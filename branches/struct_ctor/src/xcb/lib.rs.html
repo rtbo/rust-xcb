@@ -575,6 +575,8 @@
 <span id="575">575</span>
 <span id="576">576</span>
 <span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -998,6 +1000,7 @@
     <span class="doccomment">//!</span>
     <span class="doccomment">//! Accessible with the `record` cargo feature.</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/record.rs&quot;</span>));
 }
 
@@ -1105,6 +1108,7 @@
     <span class="doccomment">//! The `XFree86-VidModeExtension` X extension.</span>
     <span class="doccomment">//!</span>
     <span class="doccomment">//! Accessible with the `xf86vidmode` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xf86vidmode.rs&quot;</span>));
 }
 
