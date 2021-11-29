@@ -1550,13 +1550,6 @@
 <span id="1550">1550</span>
 <span id="1551">1551</span>
 <span id="1552">1552</span>
-<span id="1553">1553</span>
-<span id="1554">1554</span>
-<span id="1555">1555</span>
-<span id="1556">1556</span>
-<span id="1557">1557</span>
-<span id="1558">1558</span>
-<span id="1559">1559</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2434,10 +2427,7 @@
         <span class="kw">let</span> <span class="ident">ext_data</span> <span class="op">=</span> <span class="ident">cache_extensions_data</span>(<span class="ident">conn</span>, <span class="ident">mandatory</span>, <span class="ident">optional</span>);
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>))]</span>
-        <span class="kw">return</span> <span class="ident">Connection</span> {
-            <span class="ident">c</span>: <span class="ident">conn</span>,
-            <span class="ident">ext_data</span>,
-        };
+        <span class="kw">return</span> <span class="ident">Connection</span> { <span class="ident">c</span>: <span class="ident">conn</span>, <span class="ident">ext_data</span> };
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
         <span class="kw">return</span> <span class="ident">Connection</span> {
@@ -2480,11 +2470,7 @@
 
         <span class="kw">let</span> <span class="ident">ext_data</span> <span class="op">=</span> <span class="ident">cache_extensions_data</span>(<span class="ident">c</span>, <span class="ident">mandatory</span>, <span class="ident">optional</span>);
 
-        <span class="ident">Connection</span> {
-            <span class="ident">c</span>,
-            <span class="ident">dpy</span>,
-            <span class="ident">ext_data</span>,
-        }
+        <span class="ident">Connection</span> { <span class="ident">c</span>, <span class="ident">dpy</span>, <span class="ident">ext_data</span> }
     }
 
     <span class="doccomment">/// Get the extensions activated for this connection.</span>

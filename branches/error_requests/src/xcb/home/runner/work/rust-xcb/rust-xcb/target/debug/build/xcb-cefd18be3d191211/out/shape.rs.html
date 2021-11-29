@@ -1754,7 +1754,7 @@
     <span class="ident">Input</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
     <span class="kw">match</span> <span class="ident">opcode</span> {
         <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;shape::QueryVersion&quot;</span>),
         <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;shape::Rectangles&quot;</span>),
