@@ -2631,7 +2631,7 @@
     <span class="doccomment">///             Err(xcb::Error::Connection(err)) =&gt; {</span>
     <span class="doccomment">///                 panic!(&quot;unexpected I/O error: {}&quot;, err);</span>
     <span class="doccomment">///             }</span>
-    <span class="doccomment">///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err)))) =&gt; {</span>
+    <span class="doccomment">///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err), _req_name))) =&gt; {</span>
     <span class="doccomment">///                 // may be this particular error is fine?</span>
     <span class="doccomment">///                 continue;</span>
     <span class="doccomment">///             }</span>

@@ -140,7 +140,7 @@ One of them is before entering or re-entering the event loop after performing un
             <span class="prelude-val">Err</span>(<span class="ident">xcb::Error::Connection</span>(<span class="ident">err</span>)) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="macro">panic!</span>(<span class="string">&quot;unexpected I/O error: {}&quot;</span>, <span class="ident">err</span>);
             }
-            <span class="prelude-val">Err</span>(<span class="ident">xcb::Error::Protocol</span>(<span class="ident">xcb::ProtocolError::X</span>(<span class="ident">x::Error::Font</span>(<span class="ident">err</span>)))) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="prelude-val">Err</span>(<span class="ident">xcb::Error::Protocol</span>(<span class="ident">xcb::ProtocolError::X</span>(<span class="ident">x::Error::Font</span>(<span class="ident">err</span>), <span class="ident">_req_name</span>))) <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="comment">// may be this particular error is fine?</span>
                 <span class="kw">continue</span>;
             }
