@@ -6215,43 +6215,43 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sz</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter</span>() {
             <span class="kw">match</span> <span class="ident">el</span> {
-                <span class="ident">Cp::Repeat</span>(<span class="ident">repeat</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::Repeat</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::AlphaMap</span>(<span class="ident">alphamap</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::AlphaMap</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::AlphaXOrigin</span>(<span class="ident">alphaxorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::AlphaXOrigin</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::AlphaYOrigin</span>(<span class="ident">alphayorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::AlphaYOrigin</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::ClipXOrigin</span>(<span class="ident">clipxorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ClipXOrigin</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::ClipYOrigin</span>(<span class="ident">clipyorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ClipYOrigin</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::ClipMask</span>(<span class="ident">clipmask</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ClipMask</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::GraphicsExposure</span>(<span class="ident">graphicsexposure</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::GraphicsExposure</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::SubwindowMode</span>(<span class="ident">subwindowmode</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::SubwindowMode</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::PolyEdge</span>(<span class="ident">polyedge</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::PolyEdge</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::PolyMode</span>(<span class="ident">polymode</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::PolyMode</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::Dither</span>(<span class="ident">dither</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::Dither</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Cp::ComponentAlpha</span>(<span class="ident">componentalpha</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ComponentAlpha</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
             }
@@ -6263,47 +6263,47 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter</span>() {
             <span class="kw">match</span> <span class="ident">el</span> {
-                <span class="ident">Cp::Repeat</span>(<span class="ident">repeat</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::Repeat</span>(<span class="ident">repeat</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">repeat</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
                         .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::AlphaMap</span>(<span class="ident">alphamap</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::AlphaMap</span>(<span class="ident">alphamap</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">alphamap</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::AlphaXOrigin</span>(<span class="ident">alphaxorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::AlphaXOrigin</span>(<span class="ident">alphaxorigin</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">alphaxorigin</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::AlphaYOrigin</span>(<span class="ident">alphayorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::AlphaYOrigin</span>(<span class="ident">alphayorigin</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">alphayorigin</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::ClipXOrigin</span>(<span class="ident">clipxorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ClipXOrigin</span>(<span class="ident">clipxorigin</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">clipxorigin</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::ClipYOrigin</span>(<span class="ident">clipyorigin</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ClipYOrigin</span>(<span class="ident">clipyorigin</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">clipyorigin</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::ClipMask</span>(<span class="ident">clipmask</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ClipMask</span>(<span class="ident">clipmask</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">clipmask</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::GraphicsExposure</span>(<span class="ident">graphicsexposure</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::GraphicsExposure</span>(<span class="ident">graphicsexposure</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">graphicsexposure</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::SubwindowMode</span>(<span class="ident">subwindowmode</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::SubwindowMode</span>(<span class="ident">subwindowmode</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">subwindowmode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
                         .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::PolyEdge</span>(<span class="ident">polyedge</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::PolyEdge</span>(<span class="ident">polyedge</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">polyedge</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
                         .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::PolyMode</span>(<span class="ident">polymode</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::PolyMode</span>(<span class="ident">polymode</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">polymode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
                         .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::Dither</span>(<span class="ident">dither</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::Dither</span>(<span class="ident">dither</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">dither</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Cp::ComponentAlpha</span>(<span class="ident">componentalpha</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Cp::ComponentAlpha</span>(<span class="ident">componentalpha</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">componentalpha</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
             }

@@ -4598,22 +4598,22 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sz</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter</span>() {
             <span class="kw">match</span> <span class="ident">el</span> {
-                <span class="ident">Ca::Counter</span>(<span class="ident">counter</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Counter</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Ca::ValueType</span>(<span class="ident">value_type</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::ValueType</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Ca::Value</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Value</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">8</span>;
                 }
-                <span class="ident">Ca::TestType</span>(<span class="ident">test_type</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::TestType</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
-                <span class="ident">Ca::Delta</span>(<span class="ident">delta</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Delta</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">8</span>;
                 }
-                <span class="ident">Ca::Events</span>(<span class="ident">events</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Events</span>(..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 }
             }
@@ -4625,24 +4625,24 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter</span>() {
             <span class="kw">match</span> <span class="ident">el</span> {
-                <span class="ident">Ca::Counter</span>(<span class="ident">counter</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Counter</span>(<span class="ident">counter</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">counter</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Ca::ValueType</span>(<span class="ident">value_type</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::ValueType</span>(<span class="ident">value_type</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">value_type</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
                         .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Ca::Value</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Value</span>(<span class="ident">value</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">value</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Ca::TestType</span>(<span class="ident">test_type</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::TestType</span>(<span class="ident">test_type</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">test_type</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
                         .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Ca::Delta</span>(<span class="ident">delta</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Delta</span>(<span class="ident">delta</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
-                <span class="ident">Ca::Events</span>(<span class="ident">events</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">Ca::Events</span>(<span class="ident">events</span>, ..) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">events</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
             }
