@@ -1665,6 +1665,10 @@
 <span id="1665">1665</span>
 <span id="1666">1666</span>
 <span id="1667">1667</span>
+<span id="1668">1668</span>
+<span id="1669">1669</span>
+<span id="1670">1670</span>
+<span id="1671">1671</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2365,6 +2369,8 @@
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">dpy</span> <span class="op">=</span> <span class="ident">xlib::XOpenDisplay</span>(<span class="ident">ptr::null</span>());
 
+            <span class="ident">check_connection_error</span>(<span class="ident">XGetXCBConnection</span>(<span class="ident">dpy</span>))<span class="question-mark">?</span>;
+
             <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::from_xlib_display</span>(<span class="ident">dpy</span>);
 
             <span class="ident">conn</span>.<span class="ident">has_error</span>()
@@ -2390,6 +2396,8 @@
     ) -&gt; <span class="ident">ConnResult</span><span class="op">&lt;</span>(<span class="ident">Connection</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">dpy</span> <span class="op">=</span> <span class="ident">xlib::XOpenDisplay</span>(<span class="ident">ptr::null</span>());
+
+            <span class="ident">check_connection_error</span>(<span class="ident">XGetXCBConnection</span>(<span class="ident">dpy</span>))<span class="question-mark">?</span>;
 
             <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::from_xlib_display_and_extensions</span>(<span class="ident">dpy</span>, <span class="ident">mandatory</span>, <span class="ident">optional</span>);
 
