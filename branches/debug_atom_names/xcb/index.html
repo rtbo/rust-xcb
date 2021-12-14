@@ -200,12 +200,12 @@ still only be done by Xlib. E.g. hardware initialization for OpenGL is done by X
 out the name of the atom in addition to its value.</p>
 <p>E.g. the feature would turn:</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">Atom</span> {
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="ident">Atom</span> {
     <span class="ident">res_id</span>: <span class="number">303</span>,
 }</code></pre></div>
 <p>into</p>
 
-<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="ident">Atom</span>(<span class="string">&quot;Abs Pressure&quot;</span> ; <span class="number">303</span>)</code></pre></div>
+<div class='information'><div class='tooltip ignore'>ⓘ</div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore"><code><span class="ident">Atom</span>(<span class="string">&quot;Abs Pressure&quot;</span> ; <span class="number">303</span>)</code></pre></div>
 <p>This can be useful in situations where you are not sure which atom you have to intern
 in order to look up some data in a reply.</p>
 <p>It should be noted that the feature sets global variable to have access to
