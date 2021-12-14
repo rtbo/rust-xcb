@@ -1649,6 +1649,7 @@
 <span id="1649">1649</span>
 <span id="1650">1650</span>
 <span id="1651">1651</span>
+<span id="1652">1652</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2257,6 +2258,7 @@
 <span class="doccomment">/// will call `xcb_disconnect` when the `Connection` goes out of scope.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Connection</span> {
     <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
     <span class="ident">dpy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xlib::Display</span>,
 
