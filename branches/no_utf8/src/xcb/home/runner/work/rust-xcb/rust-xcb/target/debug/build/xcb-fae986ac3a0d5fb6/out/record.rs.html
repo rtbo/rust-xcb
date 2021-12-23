@@ -1675,12 +1675,14 @@
 <span id="1675">1675</span>
 <span id="1676">1676</span>
 <span id="1677">1677</span>
+<span id="1678">1678</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from record.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::latin_str</span>::{<span class="ident">LatinStr</span>, <span class="ident">LatinString</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto::PropEl</span>;
 
