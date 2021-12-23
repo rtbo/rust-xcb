@@ -223,7 +223,6 @@
 <span id="223">223</span>
 <span id="224">224</span>
 <span id="225">225</span>
-<span id="226">226</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 <span class="kw">use</span> <span class="ident">std::str</span>;
@@ -248,8 +247,7 @@
 <span class="doccomment">/// This type is useful for XCB because strings in the X protocol are</span>
 <span class="doccomment">/// expected to be Latin-1 encoded.</span>
 <span class="doccomment">/// Although the X strings are Latin-1, in reality ASCII can be</span>
-<span class="doccomment">/// expected without too much risk, hence the ASCII conversions functions.</span>
-<span class="doccomment">/// (see [Lat1Str::try_from_ascii] and [Lat1Str::try_as_ascii])</span>
+<span class="doccomment">/// expected without too much risk, hence all the ASCII related functions.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This does not account for strings passed as raw bytes</span>
 <span class="doccomment">/// to [x::ChangeProperty](crate::x::ChangeProperty) (e.g. to set a window title).</span>
