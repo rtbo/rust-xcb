@@ -26149,7 +26149,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::latin_str</span>::{<span class="ident">LatinStr</span>, <span class="ident">LatinString</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::lat1_str</span>::{<span class="ident">Lat1Str</span>, <span class="ident">Lat1String</span>};
 
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
@@ -32748,8 +32748,8 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SetupRequest</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">authorization_protocol_name</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_name</span>());
-        <span class="kw">let</span> <span class="ident">authorization_protocol_data</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_data</span>());
+        <span class="kw">let</span> <span class="ident">authorization_protocol_name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_name</span>());
+        <span class="kw">let</span> <span class="ident">authorization_protocol_data</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_data</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SetupRequest&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;byte_order&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">byte_order</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -32774,8 +32774,8 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SetupRequestBuf</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">authorization_protocol_name</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_name</span>());
-        <span class="kw">let</span> <span class="ident">authorization_protocol_data</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_data</span>());
+        <span class="kw">let</span> <span class="ident">authorization_protocol_name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_name</span>());
+        <span class="kw">let</span> <span class="ident">authorization_protocol_data</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">authorization_protocol_data</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SetupRequestBuf&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;byte_order&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">byte_order</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -32998,7 +32998,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SetupFailed</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">reason</span>());
+        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">reason</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SetupFailed&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;status&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">status</span>())
             .<span class="ident">field</span>(<span class="string">&quot;reason_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">reason_len</span>())
@@ -33012,7 +33012,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SetupFailedBuf</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">reason</span>());
+        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">reason</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SetupFailedBuf&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;status&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">status</span>())
             .<span class="ident">field</span>(<span class="string">&quot;reason_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">reason_len</span>())
@@ -33189,7 +33189,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SetupAuthenticate</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">reason</span>());
+        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">reason</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SetupAuthenticate&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;status&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">status</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">5</span>)
@@ -33201,7 +33201,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SetupAuthenticateBuf</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">reason</span>());
+        <span class="kw">let</span> <span class="ident">reason</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">reason</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SetupAuthenticateBuf&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;status&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">status</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">5</span>)
@@ -33643,7 +33643,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Setup</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">vendor</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">vendor</span>());
+        <span class="kw">let</span> <span class="ident">vendor</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">vendor</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Setup&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;status&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">status</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -33681,7 +33681,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">SetupBuf</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">vendor</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">vendor</span>());
+        <span class="kw">let</span> <span class="ident">vendor</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">vendor</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;SetupBuf&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;status&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">status</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -34624,7 +34624,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">Str</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">name</span>());
+        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">name</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Str&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;name_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name_len</span>())
             .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">name</span>)
@@ -34634,7 +34634,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">StrBuf</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">name</span>());
+        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">name</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;StrBuf&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;name_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name_len</span>())
             .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">name</span>)
@@ -39093,7 +39093,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetAtomNameReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">name</span>());
+        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">name</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetAtomNameReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -44118,7 +44118,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ListFontsWithInfoReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">name</span>());
+        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">name</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ListFontsWithInfoReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;name_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name_len</span>())

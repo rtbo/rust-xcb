@@ -4277,7 +4277,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::latin_str</span>::{<span class="ident">LatinStr</span>, <span class="ident">LatinString</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::lat1_str</span>::{<span class="ident">Lat1Str</span>, <span class="ident">Lat1String</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto::PropEl</span>;
 
@@ -4495,8 +4495,8 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ListItem</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">object_context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">object_context</span>());
-        <span class="kw">let</span> <span class="ident">data_context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">data_context</span>());
+        <span class="kw">let</span> <span class="ident">object_context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">object_context</span>());
+        <span class="kw">let</span> <span class="ident">data_context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">data_context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ListItem&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>())
             .<span class="ident">field</span>(<span class="string">&quot;object_context_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_context_len</span>())
@@ -4511,8 +4511,8 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">ListItemBuf</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">object_context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">object_context</span>());
-        <span class="kw">let</span> <span class="ident">data_context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">data_context</span>());
+        <span class="kw">let</span> <span class="ident">object_context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">object_context</span>());
+        <span class="kw">let</span> <span class="ident">data_context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">data_context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ListItemBuf&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>())
             .<span class="ident">field</span>(<span class="string">&quot;object_context_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">object_context_len</span>())
@@ -4940,7 +4940,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetDeviceCreateContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetDeviceCreateContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -5221,7 +5221,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetDeviceContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetDeviceContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -5503,7 +5503,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetWindowCreateContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetWindowCreateContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -5724,7 +5724,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetWindowContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetWindowContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -6006,7 +6006,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetPropertyCreateContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetPropertyCreateContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -6285,7 +6285,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetPropertyUseContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetPropertyUseContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -6506,7 +6506,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetPropertyContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetPropertyContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -6732,7 +6732,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetPropertyDataContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetPropertyDataContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -7243,7 +7243,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetSelectionCreateContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetSelectionCreateContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -7522,7 +7522,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetSelectionUseContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetSelectionUseContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -7743,7 +7743,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetSelectionContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetSelectionContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -7967,7 +7967,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetSelectionDataContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetSelectionDataContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -8415,7 +8415,7 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetClientContextReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">std::str::from_utf8</span>(<span class="self">self</span>.<span class="ident">context</span>());
+        <span class="kw">let</span> <span class="ident">context</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">context</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetClientContextReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
