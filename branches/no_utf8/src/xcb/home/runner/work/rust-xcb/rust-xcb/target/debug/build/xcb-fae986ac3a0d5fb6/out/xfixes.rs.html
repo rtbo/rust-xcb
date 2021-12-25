@@ -3580,15 +3580,13 @@
 <span id="3580">3580</span>
 <span id="3581">3581</span>
 <span id="3582">3582</span>
-<span id="3583">3583</span>
-<span id="3584">3584</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xfixes.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::lat1_str</span>::{<span class="ident">Lat1Str</span>, <span class="ident">Lat1String</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::lat1_str</span>::{<span class="ident">Lat1Str</span>, <span class="ident">Lat1StrF</span>, <span class="ident">Lat1String</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shape</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
@@ -6273,13 +6271,13 @@
         }
     }
 
-    <span class="doccomment">/// Returned string is encoded in LATIN-1</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">32usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">nbytes</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -6298,7 +6296,6 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetCursorNameReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">name</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetCursorNameReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -6307,7 +6304,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;atom&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">atom</span>())
             .<span class="ident">field</span>(<span class="string">&quot;nbytes&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">nbytes</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">18</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>())
             .<span class="ident">finish</span>()
     }
 }
@@ -6591,14 +6588,14 @@
         }
     }
 
-    <span class="doccomment">/// Returned string is encoded in LATIN-1</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span>
                 (<span class="number">32usize</span> <span class="op">+</span> (((<span class="self">self</span>.<span class="ident">width</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> (<span class="self">self</span>.<span class="ident">height</span>() <span class="kw">as</span> <span class="ident">usize</span>)) <span class="op">*</span> <span class="number">4usize</span>));
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">nbytes</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -6617,7 +6614,6 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetCursorImageAndNameReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">name</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetCursorImageAndNameReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">1</span>)
@@ -6634,7 +6630,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;nbytes&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">nbytes</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">2</span>)
             .<span class="ident">field</span>(<span class="string">&quot;cursor_image&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">cursor_image</span>())
-            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">name</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;name&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">name</span>())
             .<span class="ident">finish</span>()
     }
 }

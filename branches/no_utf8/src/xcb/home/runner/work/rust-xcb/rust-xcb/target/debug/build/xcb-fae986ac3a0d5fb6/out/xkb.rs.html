@@ -17556,15 +17556,13 @@
 <span id="17556">17556</span>
 <span id="17557">17557</span>
 <span id="17558">17558</span>
-<span id="17559">17559</span>
-<span id="17560">17560</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::lat1_str</span>::{<span class="ident">Lat1Str</span>, <span class="ident">Lat1String</span>};
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::lat1_str</span>::{<span class="ident">Lat1Str</span>, <span class="ident">Lat1StrF</span>, <span class="ident">Lat1String</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto::PropEl</span>;
 
@@ -21253,7 +21251,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">KeyName</span> {
-    <span class="kw">pub</span> <span class="ident">name</span>: [<span class="ident">u8</span>; <span class="number">4</span>],
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="number">4</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -21281,8 +21279,8 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">KeyAlias</span> {
-    <span class="kw">pub</span> <span class="ident">real</span>: [<span class="ident">u8</span>; <span class="number">4</span>],
-    <span class="kw">pub</span> <span class="ident">alias</span>: [<span class="ident">u8</span>; <span class="number">4</span>],
+    <span class="kw">pub</span> <span class="ident">real</span>: <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="number">4</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">alias</span>: <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="number">4</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
@@ -21333,13 +21331,13 @@
         }
     }
 
-    <span class="doccomment">/// Returned string is encoded in LATIN-1</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">2usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">length</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 
@@ -21395,7 +21393,7 @@
 
     <span class="doccomment">/// Construct a new [CountedString16Buf].</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>], <span class="ident">alignment_pad</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">CountedString16Buf</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span>, <span class="ident">alignment_pad</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">CountedString16Buf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
             <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>; <span class="comment">// length</span>
@@ -21405,7 +21403,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">string</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">string</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">string</span>);
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">string</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">string</span>.<span class="ident">as_bytes</span>());
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">string</span>.<span class="ident">len</span>();
             <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">alignment_pad</span> {
                 <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -21440,10 +21438,9 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">CountedString16</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">string</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">string</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CountedString16&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;length&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">length</span>())
-            .<span class="ident">field</span>(<span class="string">&quot;string&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">string</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;string&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">string</span>())
             .<span class="ident">field</span>(<span class="string">&quot;alignment_pad&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">alignment_pad</span>())
             .<span class="ident">finish</span>()
     }
@@ -21451,10 +21448,9 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">CountedString16Buf</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">string</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">string</span>());
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;CountedString16Buf&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;length&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">length</span>())
-            .<span class="ident">field</span>(<span class="string">&quot;string&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">string</span>)
+            .<span class="ident">field</span>(<span class="string">&quot;string&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">string</span>())
             .<span class="ident">field</span>(<span class="string">&quot;alignment_pad&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">alignment_pad</span>())
             .<span class="ident">finish</span>()
     }
