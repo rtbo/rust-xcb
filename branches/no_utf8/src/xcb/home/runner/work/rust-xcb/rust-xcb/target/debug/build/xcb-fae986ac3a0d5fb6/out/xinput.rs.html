@@ -32745,7 +32745,7 @@
 
     <span class="doccomment">/// Construct a new [DeviceNameBuf].</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span>) -&gt; <span class="ident">DeviceNameBuf</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">DeviceNameBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
             <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>; <span class="comment">// len</span>
@@ -32754,7 +32754,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">string</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">string</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">string</span>.<span class="ident">as_bytes</span>());
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">string</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">string</span>);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">string</span>.<span class="ident">len</span>();
 
             <span class="ident">DeviceNameBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
@@ -39653,7 +39653,7 @@
         <span class="ident">len</span>: <span class="ident">u16</span>,
         <span class="ident">send_core</span>: <span class="ident">bool</span>,
         <span class="ident">enable</span>: <span class="ident">bool</span>,
-        <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span>,
+        <span class="ident">name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
     ) -&gt; <span class="ident">AddMasterBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -39673,7 +39673,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">name</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">if</span> <span class="ident">send_core</span> { <span class="number">1u8</span> } <span class="kw">else</span> { <span class="number">0u8</span> }).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">if</span> <span class="ident">enable</span> { <span class="number">1u8</span> } <span class="kw">else</span> { <span class="number">0u8</span> }).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>.<span class="ident">as_bytes</span>());
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
 
@@ -42320,7 +42320,7 @@
         <span class="ident">r#type</span>: <span class="ident">DeviceType</span>,
         <span class="ident">attachment</span>: <span class="ident">DeviceId</span>,
         <span class="ident">enabled</span>: <span class="ident">bool</span>,
-        <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span>,
+        <span class="ident">name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
         <span class="ident">classes</span>: <span class="kw-2">&amp;</span>[<span class="ident">DeviceClassBuf</span>],
     ) -&gt; <span class="ident">XiDeviceInfoBuf</span> {
         <span class="kw">unsafe</span> {
@@ -42346,7 +42346,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">name</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">if</span> <span class="ident">enabled</span> { <span class="number">1u8</span> } <span class="kw">else</span> { <span class="number">0u8</span> }).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>; <span class="comment">// pad</span>
-            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>.<span class="ident">as_bytes</span>());
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
             <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">classes</span> {

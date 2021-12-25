@@ -5959,7 +5959,7 @@
         <span class="ident">base_id</span>: <span class="ident">Port</span>,
         <span class="ident">num_ports</span>: <span class="ident">u16</span>,
         <span class="ident">r#type</span>: <span class="ident">Type</span>,
-        <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span>,
+        <span class="ident">name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
         <span class="ident">formats</span>: <span class="kw-2">&amp;</span>[<span class="ident">Format</span>],
     ) -&gt; <span class="ident">AdaptorInfoBuf</span> {
         <span class="kw">unsafe</span> {
@@ -5982,7 +5982,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">formats</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">r#type</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>; <span class="comment">// pad</span>
-            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>.<span class="ident">as_bytes</span>());
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
             <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">formats</span> {
@@ -6205,7 +6205,7 @@
         <span class="ident">width</span>: <span class="ident">u16</span>,
         <span class="ident">height</span>: <span class="ident">u16</span>,
         <span class="ident">rate</span>: <span class="ident">Rational</span>,
-        <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span>,
+        <span class="ident">name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
     ) -&gt; <span class="ident">EncodingInfoBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -6226,7 +6226,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">height</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>; <span class="comment">// pad</span>
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">rate</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>.<span class="ident">as_bytes</span>());
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
 
@@ -6689,7 +6689,7 @@
 
     <span class="doccomment">/// Construct a new [AttributeInfoBuf].</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">flags</span>: <span class="ident">AttributeFlag</span>, <span class="ident">min</span>: <span class="ident">i32</span>, <span class="ident">max</span>: <span class="ident">i32</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span>) -&gt; <span class="ident">AttributeInfoBuf</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">flags</span>: <span class="ident">AttributeFlag</span>, <span class="ident">min</span>: <span class="ident">i32</span>, <span class="ident">max</span>: <span class="ident">i32</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">AttributeInfoBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
             <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>; <span class="comment">// flags</span>
@@ -6705,7 +6705,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">min</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">max</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">name</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>.<span class="ident">as_bytes</span>());
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
 
