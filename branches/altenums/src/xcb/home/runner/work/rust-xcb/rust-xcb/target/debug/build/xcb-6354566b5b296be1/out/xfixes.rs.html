@@ -3582,10 +3582,6 @@
 <span id="3581">3581</span>
 <span id="3582">3582</span>
 <span id="3583">3583</span>
-<span id="3584">3584</span>
-<span id="3585">3585</span>
-<span id="3586">3586</span>
-<span id="3587">3587</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xfixes.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -4195,11 +4191,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Region</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">RegionEnum</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">REGION_NONE</span>: <span class="ident">Region</span> <span class="op">=</span> <span class="ident">Region</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>

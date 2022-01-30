@@ -4862,10 +4862,6 @@
 <span id="4861">4861</span>
 <span id="4862">4862</span>
 <span id="4863">4863</span>
-<span id="4864">4864</span>
-<span id="4865">4865</span>
-<span id="4866">4866</span>
-<span id="4867">4867</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from render.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -5342,11 +5338,7 @@
     <span class="ident">Direct</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PictureEnum</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PICTURE_NONE</span>: <span class="ident">Picture</span> <span class="op">=</span> <span class="ident">Picture</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>

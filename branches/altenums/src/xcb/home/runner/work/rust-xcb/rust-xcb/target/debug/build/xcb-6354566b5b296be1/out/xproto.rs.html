@@ -26556,23 +26556,6 @@
 <span id="26555">26555</span>
 <span id="26556">26556</span>
 <span id="26557">26557</span>
-<span id="26558">26558</span>
-<span id="26559">26559</span>
-<span id="26560">26560</span>
-<span id="26561">26561</span>
-<span id="26562">26562</span>
-<span id="26563">26563</span>
-<span id="26564">26564</span>
-<span id="26565">26565</span>
-<span id="26566">26566</span>
-<span id="26567">26567</span>
-<span id="26568">26568</span>
-<span id="26569">26569</span>
-<span id="26570">26570</span>
-<span id="26571">26571</span>
-<span id="26572">26572</span>
-<span id="26573">26573</span>
-<span id="26574">26574</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -34500,11 +34483,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">WindowEnum</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">WINDOW_NONE</span>: <span class="ident">Window</span> <span class="op">=</span> <span class="ident">Window</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
 <span class="macro">bitflags!</span> {
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ButtonMask</span>: <span class="ident">u32</span> {
@@ -34731,11 +34710,7 @@
     <span class="ident">Installed</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ColormapEnum</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COLORMAP_NONE</span>: <span class="ident">Colormap</span> <span class="op">=</span> <span class="ident">Colormap</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ClientMessageData</span> {
@@ -34875,12 +34850,8 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">BackPixmap</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-    <span class="ident">ParentRelative</span> <span class="op">=</span> <span class="number">1</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BACKPIXMAP_NONE</span>: <span class="ident">Pixmap</span> <span class="op">=</span> <span class="ident">Pixmap</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BACKPIXMAP_PARENT_RELATIVE</span>: <span class="ident">Pixmap</span> <span class="op">=</span> <span class="ident">Pixmap</span> { <span class="ident">res_id</span>: <span class="number">1</span> };
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
@@ -34957,12 +34928,7 @@
     <span class="ident">Append</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">GetPropertyType</span> {
-    <span class="ident">Any</span> <span class="op">=</span> <span class="number">0</span>,
-}
-
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GETPROPERTYTYPE_ANY</span>: <span class="ident">Atom</span> <span class="op">=</span> <span class="ident">Atom</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SendEventDest</span> {
     <span class="ident">PointerWindow</span>,
@@ -35009,11 +34975,7 @@
     <span class="ident">Frozen</span> <span class="op">=</span> <span class="number">4</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CursorEnum</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CURSOR_NONE</span>: <span class="ident">Cursor</span> <span class="op">=</span> <span class="ident">Cursor</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
@@ -35143,6 +35105,18 @@
         <span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">Timecoord</span>)
     }
 }
+
+<span class="doccomment">/// The focus reverts to `XCB_NONE`, so no window will have the input focus.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INPUTFOCUS_NONE</span>: <span class="ident">Window</span> <span class="op">=</span> <span class="ident">Window</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
+<span class="doccomment">/// The focus reverts to `XCB_POINTER_ROOT` respectively. When the focus reverts,</span>
+<span class="doccomment">/// FocusIn and FocusOut events are generated, but the last-focus-change time is</span>
+<span class="doccomment">/// not changed.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INPUTFOCUS_POINTER_ROOT</span>: <span class="ident">Window</span> <span class="op">=</span> <span class="ident">Window</span> { <span class="ident">res_id</span>: <span class="number">1</span> };
+<span class="doccomment">/// The focus reverts to the parent (or closest viewable ancestor) and the new</span>
+<span class="doccomment">/// revert_to value is `XCB_INPUT_FOCUS_NONE`.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INPUTFOCUS_PARENT</span>: <span class="ident">Window</span> <span class="op">=</span> <span class="ident">Window</span> { <span class="ident">res_id</span>: <span class="number">2</span> };
+<span class="doccomment">/// NOT YET DOCUMENTED. Only relevant for the xinput extension.</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INPUTFOCUS_FOLLOW_KEYBOARD</span>: <span class="ident">Window</span> <span class="op">=</span> <span class="ident">Window</span> { <span class="ident">res_id</span>: <span class="number">3</span> };
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
@@ -35932,17 +35906,9 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PixmapEnum</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PIXMAP_NONE</span>: <span class="ident">Pixmap</span> <span class="op">=</span> <span class="ident">Pixmap</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FontEnum</span> {
-    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
-}
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FONT_NONE</span>: <span class="ident">Font</span> <span class="op">=</span> <span class="ident">Font</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>

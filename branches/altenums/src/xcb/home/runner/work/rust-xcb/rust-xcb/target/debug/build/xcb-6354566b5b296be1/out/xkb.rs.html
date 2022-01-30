@@ -18028,8 +18028,6 @@
 <span id="18027">18027</span>
 <span id="18028">18028</span>
 <span id="18029">18029</span>
-<span id="18030">18030</span>
-<span id="18031">18031</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -22876,12 +22874,10 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">behavior</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Behavior</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">behavior</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Behavior</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">1usize</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="number">2usize</span>;
-            <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>), <span class="ident">len</span>);
-            <span class="ident">Behavior::from_data</span>(<span class="ident">data</span>)
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">1usize</span>;
+            <span class="ident">Behavior::unserialize</span>(<span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>), (), <span class="kw-2">&amp;mut</span> <span class="ident">offset</span>)
         }
     }
 }
