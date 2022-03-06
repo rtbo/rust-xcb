@@ -26573,6 +26573,8 @@
 <span id="26571">26571</span>
 <span id="26572">26572</span>
 <span id="26573">26573</span>
+<span id="26574">26574</span>
+<span id="26575">26575</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -39764,12 +39766,12 @@
 
 <span class="doccomment">/// Get atom identifier by name</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Retrieves the identifier (xcb_atom_t TODO) for the atom with the specified</span>
-<span class="doccomment">/// name. Atoms are used in protocols like EWMH, for example to store window titles</span>
+<span class="doccomment">/// Retrieves the identifier for the atom with the specified name.</span>
+<span class="doccomment">/// Atoms are used in protocols like EWMH, for example to store window titles</span>
 <span class="doccomment">/// (`_NET_WM_NAME` atom) as property of a window.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// If `only_if_exists` is 0, the atom will be created if it does not already exist.</span>
-<span class="doccomment">/// If `only_if_exists` is 1, `XCB_ATOM_NONE` will be returned if the atom does</span>
+<span class="doccomment">/// If `only_if_exists` is `false`, the atom will be created if it does not already exist.</span>
+<span class="doccomment">/// If `only_if_exists` is `true`, [`ATOM_NONE`] will be returned if the atom does</span>
 <span class="doccomment">/// not yet exist.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
@@ -39792,6 +39794,8 @@
 <span class="doccomment">/// This request replies [InternAtomReply].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Associated cookie types are [InternAtomCookie] and [InternAtomCookieUnchecked].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// See also [`xcb::atoms_struct`](crate::atoms_struct).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InternAtom</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Return a valid atom id only if the atom already exists.</span>
