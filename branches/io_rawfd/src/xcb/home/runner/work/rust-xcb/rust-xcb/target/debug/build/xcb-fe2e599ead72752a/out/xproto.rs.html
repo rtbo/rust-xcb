@@ -26560,6 +26560,19 @@
 <span id="26558">26558</span>
 <span id="26559">26559</span>
 <span id="26560">26560</span>
+<span id="26561">26561</span>
+<span id="26562">26562</span>
+<span id="26563">26563</span>
+<span id="26564">26564</span>
+<span id="26565">26565</span>
+<span id="26566">26566</span>
+<span id="26567">26567</span>
+<span id="26568">26568</span>
+<span id="26569">26569</span>
+<span id="26570">26570</span>
+<span id="26571">26571</span>
+<span id="26572">26572</span>
+<span id="26573">26573</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -26571,6 +26584,7 @@
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
+<span class="kw">use</span> <span class="ident">std::hash</span>::{<span class="ident">Hash</span>, <span class="ident">Hasher</span>};
 <span class="kw">use</span> <span class="ident">std::os::unix::io::RawFd</span>;
 
 <span class="doccomment">/// The `RequestError` error.</span>
@@ -31816,7 +31830,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Window</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -31842,7 +31856,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pixmap</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -31868,7 +31882,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Pixmap</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Cursor</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -31894,7 +31908,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Font</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -31920,7 +31934,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Font</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Gcontext</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -31946,7 +31960,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Gcontext</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Colormap</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -31972,7 +31986,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Colormap</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Atom</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -32030,6 +32044,12 @@
 
 <span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">Drawable</span> {}
 
+<span class="kw">impl</span> <span class="ident">Hash</span> <span class="kw">for</span> <span class="ident">Drawable</span> {
+    <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="kw-2">&amp;mut</span> <span class="ident">H</span>) {
+        <span class="self">self</span>.<span class="ident">resource_id</span>().<span class="ident">hash</span>(<span class="ident">state</span>);
+    }
+}
+
 <span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Drawable</span> {
     <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Window</span>) -&gt; <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">resource_id</span>() <span class="op">==</span> <span class="ident">rhs</span>.<span class="ident">resource_id</span>()
@@ -32082,6 +32102,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Eq</span> <span class="kw">for</span> <span class="ident">Fontable</span> {}
+
+<span class="kw">impl</span> <span class="ident">Hash</span> <span class="kw">for</span> <span class="ident">Fontable</span> {
+    <span class="kw">fn</span> <span class="ident">hash</span><span class="op">&lt;</span><span class="ident">H</span>: <span class="ident">Hasher</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">state</span>: <span class="kw-2">&amp;mut</span> <span class="ident">H</span>) {
+        <span class="self">self</span>.<span class="ident">resource_id</span>().<span class="ident">hash</span>(<span class="ident">state</span>);
+    }
+}
 
 <span class="kw">impl</span> <span class="ident">PartialEq</span><span class="op">&lt;</span><span class="ident">Font</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Fontable</span> {
     <span class="kw">fn</span> <span class="ident">eq</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">rhs</span>: <span class="kw-2">&amp;</span><span class="ident">Font</span>) -&gt; <span class="ident">bool</span> {

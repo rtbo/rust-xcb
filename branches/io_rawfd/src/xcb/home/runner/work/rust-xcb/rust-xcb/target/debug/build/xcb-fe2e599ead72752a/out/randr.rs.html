@@ -10562,6 +10562,7 @@
 <span id="10560">10560</span>
 <span id="10561">10561</span>
 <span id="10562">10562</span>
+<span id="10563">10563</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from randr.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -10576,6 +10577,7 @@
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
+<span class="kw">use</span> <span class="ident">std::hash</span>::{<span class="ident">Hash</span>, <span class="ident">Hasher</span>};
 <span class="kw">use</span> <span class="ident">std::os::unix::io::RawFd</span>;
 
 <span class="doccomment">/// The official identifier for the `RandR` extension.</span>
@@ -11377,7 +11379,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mode</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -11403,7 +11405,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Mode</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Crtc</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -11429,7 +11431,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Crtc</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Output</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -11455,7 +11457,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Provider</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,
@@ -11481,7 +11483,7 @@
     <span class="macro">assert_eq!</span>(<span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Provider</span><span class="op">&gt;</span>(), <span class="number">4</span>);
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lease</span> {
     <span class="ident">res_id</span>: <span class="ident">u32</span>,

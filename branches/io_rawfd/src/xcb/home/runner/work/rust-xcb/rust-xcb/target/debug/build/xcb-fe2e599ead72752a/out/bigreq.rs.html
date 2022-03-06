@@ -258,6 +258,7 @@
 <span id="256">256</span>
 <span id="257">257</span>
 <span id="258">258</span>
+<span id="259">259</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from bigreq.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -271,6 +272,7 @@
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
+<span class="kw">use</span> <span class="ident">std::hash</span>::{<span class="ident">Hash</span>, <span class="ident">Hasher</span>};
 <span class="kw">use</span> <span class="ident">std::os::unix::io::RawFd</span>;
 
 <span class="doccomment">/// The official identifier for the `BigRequests` extension.</span>
