@@ -435,6 +435,23 @@
 <span id="430">430</span>
 <span id="431">431</span>
 <span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base::ResolveWireError</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
@@ -552,36 +569,27 @@
     <span class="kw">let</span> <span class="ident">major_code</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">error</span>).<span class="ident">major_code</span>;
     <span class="kw">let</span> <span class="ident">minor_code</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">error</span>).<span class="ident">minor_code</span>;
 
-    <span class="comment">// two distinct resolutions:</span>
-    <span class="comment">// resolve the request that emit the error, done with major and minor code</span>
-    <span class="comment">// resolve the error itself, done with error_code</span>
-
-    <span class="comment">// major_code &lt; 128: core protocol request, the major_code is the request number</span>
-    <span class="comment">// otherwise: major_code is extension major_code and minor_code is the request number</span>
-
-    <span class="kw">let</span> (<span class="ident">error_ext_data</span>, <span class="ident">request_ext</span>) <span class="op">=</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">request_ext</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error_best</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-
+    <span class="kw">let</span> (<span class="ident">best</span>, <span class="ident">emitting_ext</span>) <span class="op">=</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">best</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">emitting_ext</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">extension_data</span> {
             <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">major_opcode</span> <span class="op">==</span> <span class="ident">major_code</span> {
-                <span class="ident">request_ext</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>.<span class="ident">ext</span>);
+                <span class="ident">emitting_ext</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>.<span class="ident">ext</span>);
             }
             <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">first_error</span> <span class="op">&gt;</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">error_code</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">data</span>.<span class="ident">first_error</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ed</span>) <span class="op">=</span> <span class="ident">error_best</span> {
+                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ed</span>) <span class="op">=</span> <span class="ident">best</span> {
                     <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">first_error</span> <span class="op">&gt;</span> <span class="ident">ed</span>.<span class="ident">first_error</span> {
-                        <span class="ident">error_best</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>);
+                        <span class="ident">best</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>);
                     }
                 } <span class="kw">else</span> {
-                    <span class="ident">error_best</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>);
+                    <span class="ident">best</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>);
                 }
             }
         }
-
-        (<span class="ident">error_best</span>, <span class="ident">request_ext</span>)
+        (<span class="ident">best</span>, <span class="ident">emitting_ext</span>)
     };
 
-    <span class="kw">let</span> <span class="ident">emitted_by</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext</span>) <span class="op">=</span> <span class="ident">request_ext</span> {
+    <span class="kw">let</span> <span class="ident">emitted_by</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext</span>) <span class="op">=</span> <span class="ident">emitting_ext</span> {
         <span class="kw">match</span> <span class="ident">ext</span> {
             <span class="ident">Extension::BigRequests</span> =&gt; <span class="ident"><span class="kw">crate</span>::bigreq::request_name</span>(<span class="ident">minor_code</span>),
             <span class="ident">Extension::XcMisc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xc_misc::request_name</span>(<span class="ident">minor_code</span>),
@@ -674,7 +682,7 @@
         <span class="ident"><span class="kw">crate</span>::x::request_name</span>(<span class="ident">major_code</span> <span class="kw">as</span> <span class="ident">u16</span>)
     };
 
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext_data</span>) <span class="op">=</span> <span class="ident">error_ext_data</span> {
+    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext_data</span>) <span class="op">=</span> <span class="ident">best</span> {
         <span class="kw">match</span> <span class="ident">ext_data</span>.<span class="ident">ext</span> {
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
             <span class="ident">Extension::Damage</span> =&gt; <span class="ident">ProtocolError::Damage</span>(
@@ -742,14 +750,14 @@
                 <span class="ident">emitted_by</span>,
             ),
 
-            <span class="ident">ext</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match extension error from: {:#?}&quot;</span>, <span class="ident">ext</span>),
+            <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match extension event&quot;</span>),
         }
     } <span class="kw">else</span> {
         <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::resolve_wire_error</span>(<span class="number">0</span>, <span class="ident">error</span>), <span class="ident">emitted_by</span>)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>))]</span>
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">test_resolve_error</span>() {
     <span class="comment">// resolve a core error with core request</span>
@@ -758,8 +766,8 @@
         <span class="ident">error_code</span>: <span class="number">2</span>,
         <span class="ident">sequence</span>: <span class="number">12000</span>,
         <span class="ident">resource_id</span>: <span class="number">12</span>,
-        <span class="ident">minor_code</span>: <span class="number">4</span>,
-        <span class="ident">major_code</span>: <span class="number">0</span>,
+        <span class="ident">minor_code</span>: <span class="number">0</span>,
+        <span class="ident">major_code</span>: <span class="number">4</span>,
         <span class="ident">pad0</span>: <span class="number">0</span>,
         <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
         <span class="ident">full_sequence</span>: <span class="number">12000</span>,
@@ -864,6 +872,32 @@
     <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
     <span class="macro">assert!</span>(
         <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::Mode</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
+    );
+    <span class="ident">mem::forget</span>(<span class="ident">err</span>);
+
+    <span class="comment">// mimic a regular X error (value) with extension that do not have errors (screensaver)</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">xcb_generic_error_t</span> {
+        <span class="ident">response_type</span>: <span class="number">0</span>,
+        <span class="ident">error_code</span>: <span class="number">2</span>,
+        <span class="ident">sequence</span>: <span class="number">12000</span>,
+        <span class="ident">resource_id</span>: <span class="number">12</span>,
+        <span class="ident">minor_code</span>: <span class="number">0</span>,
+        <span class="ident">major_code</span>: <span class="number">1</span>,
+        <span class="ident">pad0</span>: <span class="number">0</span>,
+        <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
+        <span class="ident">full_sequence</span>: <span class="number">12000</span>,
+    };
+    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [
+        <span class="ident">ExtensionData</span> {
+            <span class="ident">ext</span>: <span class="ident">Extension::ScreenSaver</span>,
+            <span class="ident">major_opcode</span>: <span class="number">144</span>,
+            <span class="ident">first_event</span>: <span class="number">92</span>,
+            <span class="ident">first_error</span>: <span class="number">0</span>,
+        },
+    ];
+    <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
+    <span class="macro">assert!</span>(
+        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;x::CreateWindow&quot;</span>)
     );
     <span class="ident">mem::forget</span>(<span class="ident">err</span>);
 }
