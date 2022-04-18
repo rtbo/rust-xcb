@@ -450,8 +450,6 @@
 <span id="445">445</span>
 <span id="446">446</span>
 <span id="447">447</span>
-<span id="448">448</span>
-<span id="449">449</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base::ResolveWireError</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
@@ -887,14 +885,12 @@
         <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
         <span class="ident">full_sequence</span>: <span class="number">12000</span>,
     };
-    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [
-        <span class="ident">ExtensionData</span> {
-            <span class="ident">ext</span>: <span class="ident">Extension::ScreenSaver</span>,
-            <span class="ident">major_opcode</span>: <span class="number">144</span>,
-            <span class="ident">first_event</span>: <span class="number">92</span>,
-            <span class="ident">first_error</span>: <span class="number">0</span>,
-        },
-    ];
+    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [<span class="ident">ExtensionData</span> {
+        <span class="ident">ext</span>: <span class="ident">Extension::ScreenSaver</span>,
+        <span class="ident">major_opcode</span>: <span class="number">144</span>,
+        <span class="ident">first_event</span>: <span class="number">92</span>,
+        <span class="ident">first_error</span>: <span class="number">0</span>,
+    }];
     <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
     <span class="macro">assert!</span>(
         <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;x::CreateWindow&quot;</span>)
