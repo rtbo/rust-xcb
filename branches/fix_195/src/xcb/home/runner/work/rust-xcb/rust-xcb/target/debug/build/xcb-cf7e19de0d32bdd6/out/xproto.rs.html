@@ -27090,7 +27090,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -27337,7 +27337,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -27586,7 +27586,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -27842,7 +27842,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -27990,7 +27990,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -28101,7 +28101,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -28282,7 +28282,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -28481,7 +28481,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -28621,7 +28621,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -28752,7 +28752,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -28949,7 +28949,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -29081,7 +29081,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -29224,7 +29224,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -29366,7 +29366,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -29497,7 +29497,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -29672,7 +29672,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -29894,7 +29894,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -30115,7 +30115,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -30264,7 +30264,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -30403,7 +30403,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -30550,7 +30550,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -30713,7 +30713,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -30852,7 +30852,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -31028,7 +31028,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -31193,7 +31193,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -31351,7 +31351,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -31526,7 +31526,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -31671,7 +31671,7 @@
         <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
         <span class="kw">let</span> <span class="ident">raw_slice</span> <span class="op">=</span>
             <span class="kw">unsafe</span> { <span class="ident">std::slice::from_raw_parts</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="self">self</span>.<span class="ident">wire_len</span>()) };
-        (<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
+        <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">raw_slice</span>);
         <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
@@ -32402,7 +32402,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">VisualClass</span> {
     <span class="ident">StaticGray</span> <span class="op">=</span> <span class="number">0</span>,
@@ -32802,7 +32802,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">BackingStore</span> {
     <span class="ident">NotUseful</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34003,7 +34003,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ImageOrder</span> {
     <span class="ident">LsbFirst</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34573,14 +34573,14 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Motion</span> {
     <span class="ident">Normal</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">Hint</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">NotifyDetail</span> {
     <span class="ident">Ancestor</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34593,7 +34593,7 @@
     <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">7</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">NotifyMode</span> {
     <span class="ident">Normal</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34602,7 +34602,7 @@
     <span class="ident">WhileGrabbed</span> <span class="op">=</span> <span class="number">3</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Visibility</span> {
     <span class="ident">Unobscured</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34610,7 +34610,7 @@
     <span class="ident">FullyObscured</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Place</span> {
     <span class="doccomment">/// The window is now on top of all siblings.</span>
@@ -34619,14 +34619,14 @@
     <span class="ident">OnBottom</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Property</span> {
     <span class="ident">NewValue</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">Delete</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Time</span> {
     <span class="ident">CurrentTime</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34702,7 +34702,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ATOM_WM_CLASS</span>: <span class="ident">Atom</span> <span class="op">=</span> <span class="ident">Atom</span> { <span class="ident">res_id</span>: <span class="number">67</span> };
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ATOM_WM_TRANSIENT_FOR</span>: <span class="ident">Atom</span> <span class="op">=</span> <span class="ident">Atom</span> { <span class="ident">res_id</span>: <span class="number">68</span> };
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ColormapState</span> {
     <span class="doccomment">/// The colormap was uninstalled.</span>
@@ -34747,7 +34747,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Mapping</span> {
     <span class="ident">Modifier</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34755,7 +34755,7 @@
     <span class="ident">Pointer</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">WindowClass</span> {
     <span class="ident">CopyFromParent</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34854,7 +34854,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BACKPIXMAP_NONE</span>: <span class="ident">Pixmap</span> <span class="op">=</span> <span class="ident">Pixmap</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BACKPIXMAP_PARENT_RELATIVE</span>: <span class="ident">Pixmap</span> <span class="op">=</span> <span class="ident">Pixmap</span> { <span class="ident">res_id</span>: <span class="number">1</span> };
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Gravity</span> {
     <span class="ident">BitForget</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34870,7 +34870,7 @@
     <span class="ident">Static</span> <span class="op">=</span> <span class="number">10</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MapState</span> {
     <span class="ident">Unmapped</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34878,7 +34878,7 @@
     <span class="ident">Viewable</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SetMode</span> {
     <span class="ident">Insert</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34897,7 +34897,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">StackMode</span> {
     <span class="ident">Above</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34907,14 +34907,14 @@
     <span class="ident">Opposite</span> <span class="op">=</span> <span class="number">4</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Circulate</span> {
     <span class="ident">RaiseLowest</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">LowerHighest</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PropMode</span> {
     <span class="doccomment">/// Discard the previous property value and store the new data.</span>
@@ -34955,7 +34955,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">GrabMode</span> {
     <span class="doccomment">/// The state of the keyboard appears to freeze: No further keyboard events are</span>
@@ -34966,7 +34966,7 @@
     <span class="ident">Async</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">GrabStatus</span> {
     <span class="ident">Success</span> <span class="op">=</span> <span class="number">0</span>,
@@ -34978,7 +34978,7 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CURSOR_NONE</span>: <span class="ident">Cursor</span> <span class="op">=</span> <span class="ident">Cursor</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ButtonIndex</span> {
     <span class="doccomment">/// Any of the following (or none):</span>
@@ -34995,13 +34995,13 @@
     <span class="ident">N5</span> <span class="op">=</span> <span class="number">5</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Grab</span> {
     <span class="ident">Any</span> <span class="op">=</span> <span class="number">0</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Allow</span> {
     <span class="doccomment">/// For AsyncPointer, if the pointer is frozen by the client, pointer event</span>
@@ -35119,7 +35119,7 @@
 <span class="doccomment">/// NOT YET DOCUMENTED. Only relevant for the xinput extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INPUTFOCUS_FOLLOW_KEYBOARD</span>: <span class="ident">Window</span> <span class="op">=</span> <span class="ident">Window</span> { <span class="ident">res_id</span>: <span class="number">3</span> };
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">InputFocus</span> {
     <span class="doccomment">/// The focus reverts to `XCB_NONE`, so no window will have the input focus.</span>
@@ -35135,7 +35135,7 @@
     <span class="ident">FollowKeyboard</span> <span class="op">=</span> <span class="number">3</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FontDraw</span> {
     <span class="ident">LeftToRight</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35526,7 +35526,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Gx</span> {
     <span class="ident">Clear</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35547,7 +35547,7 @@
     <span class="ident">Set</span> <span class="op">=</span> <span class="number">15</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">LineStyle</span> {
     <span class="ident">Solid</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35555,7 +35555,7 @@
     <span class="ident">DoubleDash</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CapStyle</span> {
     <span class="ident">NotLast</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35564,7 +35564,7 @@
     <span class="ident">Projecting</span> <span class="op">=</span> <span class="number">3</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">JoinStyle</span> {
     <span class="ident">Miter</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35572,7 +35572,7 @@
     <span class="ident">Bevel</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FillStyle</span> {
     <span class="ident">Solid</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35581,28 +35581,28 @@
     <span class="ident">OpaqueStippled</span> <span class="op">=</span> <span class="number">3</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FillRule</span> {
     <span class="ident">EvenOdd</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">Winding</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SubwindowMode</span> {
     <span class="ident">ClipByChildren</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">IncludeInferiors</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ArcMode</span> {
     <span class="ident">Chord</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">PieSlice</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ClipOrdering</span> {
     <span class="ident">Unsorted</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35611,7 +35611,7 @@
     <span class="ident">YxBanded</span> <span class="op">=</span> <span class="number">3</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CoordMode</span> {
     <span class="doccomment">/// Treats all coordinates as relative to the origin.</span>
@@ -35657,7 +35657,7 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PolyShape</span> {
     <span class="ident">Complex</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35665,7 +35665,7 @@
     <span class="ident">Convex</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ImageFormat</span> {
     <span class="ident">XyBitmap</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35673,7 +35673,7 @@
     <span class="ident">ZPixmap</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ColormapAlloc</span> {
     <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35911,7 +35911,7 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FONT_NONE</span>: <span class="ident">Font</span> <span class="op">=</span> <span class="ident">Font</span> { <span class="ident">res_id</span>: <span class="number">0</span> };
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">QueryShapeOf</span> {
     <span class="ident">LargestCursor</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35932,14 +35932,14 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">LedMode</span> {
     <span class="ident">Off</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">On</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AutoRepeatMode</span> {
     <span class="ident">Off</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35947,7 +35947,7 @@
     <span class="ident">Default</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Blanking</span> {
     <span class="ident">NotPreferred</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35955,7 +35955,7 @@
     <span class="ident">Default</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Exposures</span> {
     <span class="ident">NotAllowed</span> <span class="op">=</span> <span class="number">0</span>,
@@ -35963,14 +35963,14 @@
     <span class="ident">Default</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">HostMode</span> {
     <span class="ident">Insert</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">Delete</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Family</span> {
     <span class="ident">Internet</span> <span class="op">=</span> <span class="number">0</span>,
@@ -36191,14 +36191,14 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">AccessControl</span> {
     <span class="ident">Disable</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">Enable</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CloseDown</span> {
     <span class="ident">DestroyAll</span> <span class="op">=</span> <span class="number">0</span>,
@@ -36206,20 +36206,20 @@
     <span class="ident">RetainTemporary</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Kill</span> {
     <span class="ident">AllTemporary</span> <span class="op">=</span> <span class="number">0</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ScreenSaver</span> {
     <span class="ident">Reset</span> <span class="op">=</span> <span class="number">0</span>,
     <span class="ident">Active</span> <span class="op">=</span> <span class="number">1</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MappingStatus</span> {
     <span class="ident">Success</span> <span class="op">=</span> <span class="number">0</span>,
@@ -36227,7 +36227,7 @@
     <span class="ident">Failure</span> <span class="op">=</span> <span class="number">2</span>,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">MapIndex</span> {
     <span class="ident">Shift</span> <span class="op">=</span> <span class="number">0</span>,

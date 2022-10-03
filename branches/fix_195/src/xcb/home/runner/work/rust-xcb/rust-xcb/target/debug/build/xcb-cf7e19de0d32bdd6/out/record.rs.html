@@ -2189,7 +2189,7 @@
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ClientSpec</span> <span class="op">=</span> <span class="ident">u32</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u32</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Cs</span> {
     <span class="ident">CurrentClients</span> <span class="op">=</span> <span class="number">1</span>,
