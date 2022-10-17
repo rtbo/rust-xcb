@@ -2,6 +2,9 @@ use crate::AuthInfo;
 
 use super::ext::*;
 use libc::{c_char, c_int, c_uint, c_void};
+use crate::link;
+#[cfg(feature = "dl")]
+use crate::dl;
 
 /// Current protocol version
 pub const X_PROTOCOL: u32 = 11;
@@ -113,6 +116,125 @@ pub(crate) struct xcb_auth_info_t {
     /// data interpreted in a protocol specific manner
     pub data: *mut c_char,
 }
+
+// pub(crate) struct XcbLib {
+//     #[cfg(feature = "dl")]
+//     lib: dl::Lib,
+
+//     pub(crate) flush: unsafe extern "C" fn(conn: *mut xcb_connection_t) -> c_int,
+// }
+
+// impl XcbLib {
+//     #[cfg(feature = "dl")]
+//     pub(crate) fn open() -> Result<XcbLib, dl::Error> {
+//         unsafe {
+//             let lib = dl::Lib::open_multi(&["libxcb.so.1.1.0", "libxcb.so.1", "libxcb.so"])?;
+//             let flush = std::mem::transmute::<
+//                 _, unsafe extern "C" fn(conn: *mut xcb_connection_t) -> c_int
+//             >(lib.symbol("xcb_flush")?);
+//             Ok(XcbLib {
+//                 lib,
+//                 flush,
+//             })
+//         }
+//     }
+//     #[cfg(not(feature = "dl"))]
+//     pub(crate) fn open() -> XcbLib {
+//         XcbLib {
+//             flush: xcb_flush,
+//         }
+//     }
+// }
+
+link::link_struct!(XcbLib, "xcb", ["libxcb.so.1.1.0", "libxcb.so.1", "libxcb.so"],
+    flush: fn xcb_flush (c: *mut xcb_connection_t) -> c_int,
+);
+
+//      get_maximum_request_length: fn xcb_get_maximum_request_length(c: *mut xcb_connection_t) -> u32,
+
+//      prefetch_maximum_request_length: fn xcb_prefetch_maximum_request_length(c: *mut xcb_connection_t) -> c_void,
+
+//      wait_for_event: fn xcb_wait_for_event(c: *mut xcb_connection_t) -> *mut xcb_generic_event_t,
+
+//      poll_for_event: fn xcb_poll_for_event(c: *mut xcb_connection_t) -> *mut xcb_generic_event_t,
+
+//      poll_for_queued_event: fn xcb_poll_for_queued_event(c: *mut xcb_connection_t) -> *mut xcb_generic_event_t,
+
+//      poll_for_special_event: fn xcb_poll_for_special_event(
+//          c: *mut xcb_connection_t,
+//          se: *mut xcb_special_event_t
+//      ) -> *mut xcb_generic_event_t,
+
+//      wait_for_special_event: fn xcb_wait_for_special_event(
+//          c: *mut xcb_connection_t,
+//          se: *mut xcb_special_event_t
+//      ) -> *mut xcb_generic_event_t,
+
+//      register_for_special_xge: fn xcb_register_for_special_xge(
+//          c: *mut xcb_connection_t,
+//          ext: *mut xcb_extension_t,
+//          eid: u32,
+//          stamp: *mut u32
+//      ) -> *mut xcb_special_event_t,
+
+//      unregister_for_special_xge: fn xcb_unregister_for_special_xge(
+//          c: *mut xcb_connection_t,
+//          se: *mut xcb_special_event_t
+//      ) -> (),
+
+//      request_check: fn xcb_request_check(
+//          c: *mut xcb_connection_t,
+//          cookie: xcb_void_cookie_t
+//      ) -> *mut xcb_generic_error_t,
+
+//      discard_reply: fn xcb_discard_reply(c: *mut xcb_connection_t, sequence: c_uint) -> (),
+
+//      discard_reply64: fn xcb_discard_reply64(c: *mut xcb_connection_t, sequence: u64) -> (),
+
+//      get_extension_data: fn xcb_get_extension_data(
+//          c: *mut xcb_connection_t,
+//          ext: *mut xcb_extension_t
+//      ) -> *const u8,
+
+//      prefetch_extension_data: fn xcb_prefetch_extension_data(c: *mut xcb_connection_t, ext: *mut xcb_extension_t) -> (),
+
+//      get_setup: fn xcb_get_setup(c: *mut xcb_connection_t) -> *const u8,
+
+//      get_file_descriptor: fn xcb_get_file_descriptor(c: *mut xcb_connection_t) -> c_int,
+
+//      connection_has_error: fn xcb_connection_has_error(c: *mut xcb_connection_t) -> c_int,
+
+//      connect_to_fd: fn xcb_connect_to_fd(
+//          fd: c_int,
+//          auth_info: *mut xcb_auth_info_t
+//      ) -> *mut xcb_connection_t,
+
+//      disconnect: fn xcb_disconnect(c: *mut xcb_connection_t) -> (),
+
+//      parse_display: fn xcb_parse_display(
+//          name: *const c_char,
+//          host: *mut *mut c_char,
+//          display: *mut c_int,
+//          screen: *mut c_int
+//      ) -> c_int,
+
+//      connect: fn xcb_connect(
+//          displayname: *const c_char,
+//          screenp: *mut c_int
+//      ) -> *mut xcb_connection_t,
+
+//      connect_to_display_with_auth_info: fn xcb_connect_to_display_with_auth_info(
+//          display: *const c_char,
+//          auth: *mut xcb_auth_info_t,
+//          screen: *mut c_int
+//      ) -> *mut xcb_connection_t,
+
+//      generate_id: fn xcb_generate_id(c: *mut xcb_connection_t) -> u32,
+
+//      total_read: fn xcb_total_read(c: *mut xcb_connection_t) -> u64,
+
+//      total_written: fn xcb_total_written(c: *mut xcb_connection_t) -> u64,
+// );
 
 #[link(name = "xcb")]
 extern "C" {

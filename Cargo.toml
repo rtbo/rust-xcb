@@ -31,6 +31,7 @@ features = ["xlib"]
 [features]
 debug_atom_names = []
 xlib_xcb = ["x11/xlib"]
+dl = []
 
 composite = [ "xfixes" ]
 damage = [ "xfixes" ]

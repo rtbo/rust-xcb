@@ -8,6 +8,9 @@ use crate::x::{Atom, Keysym, Setup, Timestamp};
 use crate::xinput;
 use crate::{cache_extensions_data, ffi::*};
 
+#[cfg(feature = "dl")]
+use crate::dl;
+
 #[cfg(feature = "xlib_xcb")]
 use x11::xlib;
 
@@ -589,6 +592,9 @@ pub enum Error {
     Connection(ConnError),
     /// A protocol related error issued by the X server.
     Protocol(ProtocolError),
+    #[cfg(feature = "dl")]
+    /// Dynamic library error
+    DlError(dl::Error),
 }
 
 impl Display for Error {
@@ -596,6 +602,8 @@ impl Display for Error {
         match self {
             Error::Connection(_) => f.write_str("xcb connection error"),
             Error::Protocol(_) => f.write_str("xcb protocol error"),
+            #[cfg(feature = "dl")]
+            Error::DlError(_) => f.write_str("dynamic library loading error"),
         }
     }
 }
@@ -605,6 +613,8 @@ impl std::error::Error for Error {
         match self {
             Error::Connection(err) => Some(err),
             Error::Protocol(err) => Some(err),
+            #[cfg(feature = "dl")]
+            Error::DlError(err) => Some(err),
         }
     }
 }
@@ -618,6 +628,13 @@ impl From<ConnError> for Error {
 impl From<ProtocolError> for Error {
     fn from(err: ProtocolError) -> Error {
         Error::Protocol(err)
+    }
+}
+
+#[cfg(feature = "dl")]
+impl From<dl::Error> for Error {
+    fn from(err: dl::Error) -> Error {
+        Error::DlError(err)
     }
 }
 
@@ -635,6 +652,8 @@ pub type Result<T> = result::Result<T, Error>;
 /// It internally wraps an `xcb_connection_t` object and
 /// will call `xcb_disconnect` when the `Connection` goes out of scope.
 pub struct Connection {
+    lib: XcbLib,
+
     c: *mut xcb_connection_t,
 
     #[cfg(feature = "xlib_xcb")]
@@ -655,6 +674,7 @@ unsafe impl Send for Connection {}
 unsafe impl Sync for Connection {}
 
 impl Connection {
+    #[cfg(not(feature = "dl"))]
     /// Connects to the X server.
     ///
     /// Connects to the X server specified by `display_name.` If
@@ -704,6 +724,8 @@ impl Connection {
     ) -> ConnResult<(Connection, i32)> {
         let mut screen_num: c_int = 0;
         let displayname = display_name.map(|s| CString::new(s).unwrap());
+        let lib = open_xcblib();
+        //let lib = XcbLib::open()?;
         unsafe {
             let conn = if let Some(display) = displayname {
                 xcb_connect(display.as_ptr(), &mut screen_num)
@@ -717,6 +739,8 @@ impl Connection {
             conn.has_error().map(|_| (conn, screen_num as i32))
         }
     }
+
+
 
     /// Open a new connection with Xlib.
     ///

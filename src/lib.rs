@@ -308,6 +308,11 @@ pub use event::*;
 pub use ext::*;
 pub use lat1_str::*;
 
+#[cfg(feature = "dl")]
+pub mod dl;
+
+pub(crate) mod link;
+
 pub mod x {
     //! The core X protocol definitions
 
