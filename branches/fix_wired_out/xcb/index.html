@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rust bindings to the XCB library."><title>xcb - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../static.files/ayu-be46fdc453a55015.css"><script src="../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../xcb/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../xcb/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate xcb</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 1.2.1</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#macros">Macros</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">xcb</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/xcb/lib.rs.html#33-788">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Rust bindings to the XCB library.</p>
+<p>The X protocol C-language Binding (XCB - <a href="https://xcb.freedesktop.org/">https://xcb.freedesktop.org/</a>) is
+a replacement for Xlib featuring a small footprint, latency hiding, direct
+access to the protocol, improved threading support, and extensibility.</p>
+<p>The communication is established with the X server by the creation of a
+<a href="struct.Connection.html" title="struct xcb::Connection">Connection</a> object.</p>
+<p>A client communicates with the server by sending requests. There are 2 types
+of requests:</p>
+<ul>
+<li>void requests: requests that do not expect an answer
+(e.g. <a href="x/struct.ChangeProperty.html" title="struct xcb::x::ChangeProperty">x::ChangeProperty</a>)</li>
+<li>non-void requests: requests that need a <code>Reply</code> (e.g. <a href="x/struct.GetProperty.html" title="struct xcb::x::GetProperty">x::GetProperty</a>)</li>
+</ul>
+<p>Requests are passed to the server by filling a request structure e.g.
+<a href="x/struct.CreateWindow.html" title="struct xcb::x::CreateWindow">x::CreateWindow</a> and passing it to <a href="struct.Connection.html#method.send_request" title="method xcb::Connection::send_request">Connection::send_request</a>.</p>
+<p>The server can also communicate with clients by sending <code>Event</code>s.
+The client listens to events with calls such as <a href="struct.Connection.html#method.wait_for_event" title="method xcb::Connection::wait_for_event">Connection::wait_for_event</a>
+(blocking) or <a href="struct.Connection.html#method.poll_for_event" title="method xcb::Connection::poll_for_event">Connection::poll_for_event</a> (non-blocking).</p>
+<p>The <a href="x/index.html" title="mod xcb::x">x</a> module contains definitions of the core X protocol.
+Each extension is defined in its own module such as <a href="xkb/index.html" title="mod xcb::xkb">xkb</a> or <a href="render/index.html" title="mod xcb::render">render</a>, and
+is activated by a cargo feature of the same name.</p>
+<h2 id="example"><a href="#example">Example</a></h2>
+<p>Here is a walk-through of a simple <code>xcb</code> client.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="comment">// we import the necessary modules (only the core X module in this application).
+</span><span class="kw">use </span>xcb::{x};
+<span class="comment">// we need to import the `Xid` trait for the `resource_id` call down there.
+</span><span class="kw">use </span>xcb::{Xid};
+
+<span class="comment">// Many xcb functions return a `xcb::Result` or compatible result.
+</span><span class="kw">fn </span>main() -&gt; xcb::Result&lt;()&gt; {
+    <span class="comment">// Connect to the X server.
+    </span><span class="kw">let </span>(conn, screen_num) = xcb::Connection::connect(<span class="prelude-val">None</span>)<span class="question-mark">?</span>;
+
+    <span class="comment">// Fetch the `x::Setup` and get the main `x::Screen` object.
+    </span><span class="kw">let </span>setup = conn.get_setup();
+    <span class="kw">let </span>screen = setup.roots().nth(screen_num <span class="kw">as </span>usize).unwrap();
+
+    <span class="comment">// Generate an `Xid` for the client window.
+    // The type inference is needed here.
+    </span><span class="kw">let </span>window: x::Window = conn.generate_id();
+
+    <span class="comment">// We can now create a window. For this we pass a `Request`
+    // object to the `send_request_checked` method. The method
+    // returns a cookie that will be used to check for success.
+    </span><span class="kw">let </span>cookie = conn.send_request_checked(<span class="kw-2">&amp;</span>x::CreateWindow {
+        depth: x::COPY_FROM_PARENT <span class="kw">as </span>u8,
+        wid: window,
+        parent: screen.root(),
+        x: <span class="number">0</span>,
+        y: <span class="number">0</span>,
+        width: <span class="number">150</span>,
+        height: <span class="number">150</span>,
+        border_width: <span class="number">0</span>,
+        class: x::WindowClass::InputOutput,
+        visual: screen.root_visual(),
+        <span class="comment">// this list must be in same order than `Cw` enum order
+        </span>value_list: <span class="kw-2">&amp;</span>[
+            x::Cw::BackPixel(screen.white_pixel()),
+            x::Cw::EventMask(x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS)
+        ],
+    });
+    <span class="comment">// We now check if the window creation worked.
+    // A cookie can&#39;t be cloned; it is moved to the function.
+    </span>conn.check_request(cookie)<span class="question-mark">?</span>;
+
+    <span class="comment">// Let&#39;s change the window title
+    </span><span class="kw">let </span>cookie = conn.send_request_checked(<span class="kw-2">&amp;</span>x::ChangeProperty {
+        mode: x::PropMode::Replace,
+        window,
+        property: x::ATOM_WM_NAME,
+        r#type: x::ATOM_STRING,
+        data: <span class="string">b&quot;My XCB Window&quot;</span>,
+    });
+    <span class="comment">// And check for success again
+    </span>conn.check_request(cookie)<span class="question-mark">?</span>;
+
+    <span class="comment">// We now show (&quot;map&quot; in X terminology) the window.
+    // This time we do not check for success, so we discard the cookie.
+    </span>conn.send_request(<span class="kw-2">&amp;</span>x::MapWindow {
+        window,
+    });
+
+    <span class="comment">// We need a few atoms for our application.
+    // We send a few requests in a row and wait for the replies after.
+    </span><span class="kw">let </span>(wm_protocols, wm_del_window, wm_state, wm_state_maxv, wm_state_maxh) = {
+        <span class="kw">let </span>cookies = (
+            conn.send_request(<span class="kw-2">&amp;</span>x::InternAtom {
+                only_if_exists: <span class="bool-val">true</span>,
+                name: <span class="string">b&quot;WM_PROTOCOLS&quot;</span>,
+            }),
+            conn.send_request(<span class="kw-2">&amp;</span>x::InternAtom {
+                only_if_exists: <span class="bool-val">true</span>,
+                name: <span class="string">b&quot;WM_DELETE_WINDOW&quot;</span>,
+            }),
+            conn.send_request(<span class="kw-2">&amp;</span>x::InternAtom {
+                only_if_exists: <span class="bool-val">true</span>,
+                name: <span class="string">b&quot;_NET_WM_STATE&quot;</span>,
+            }),
+            conn.send_request(<span class="kw-2">&amp;</span>x::InternAtom {
+                only_if_exists: <span class="bool-val">true</span>,
+                name: <span class="string">b&quot;_NET_WM_STATE_MAXIMIZED_VERT&quot;</span>,
+            }),
+            conn.send_request(<span class="kw-2">&amp;</span>x::InternAtom {
+                only_if_exists: <span class="bool-val">true</span>,
+                name: <span class="string">b&quot;_NET_WM_STATE_MAXIMIZED_HORZ&quot;</span>,
+            }),
+        );
+        (
+            conn.wait_for_reply(cookies.<span class="number">0</span>)<span class="question-mark">?</span>.atom(),
+            conn.wait_for_reply(cookies.<span class="number">1</span>)<span class="question-mark">?</span>.atom(),
+            conn.wait_for_reply(cookies.<span class="number">2</span>)<span class="question-mark">?</span>.atom(),
+            conn.wait_for_reply(cookies.<span class="number">3</span>)<span class="question-mark">?</span>.atom(),
+            conn.wait_for_reply(cookies.<span class="number">4</span>)<span class="question-mark">?</span>.atom(),
+        )
+    };
+
+    <span class="comment">// We now activate the window close event by sending the following request.
+    // If we don&#39;t do this we can still close the window by clicking on the &quot;x&quot; button,
+    // but the event loop is notified through a connection shutdown error.
+    </span>conn.check_request(conn.send_request_checked(<span class="kw-2">&amp;</span>x::ChangeProperty {
+        mode: x::PropMode::Replace,
+        window,
+        property: wm_protocols,
+        r#type: x::ATOM_ATOM,
+        data: <span class="kw-2">&amp;</span>[wm_del_window],
+    }))<span class="question-mark">?</span>;
+
+    <span class="comment">// Previous request was checked, so a flush is not necessary in this case.
+    // Otherwise, here is how to perform a connection flush.
+    </span>conn.flush()<span class="question-mark">?</span>;
+
+    <span class="kw">let </span><span class="kw-2">mut </span>maximized = <span class="bool-val">false</span>;
+
+    <span class="comment">// We enter the main event loop
+    </span><span class="kw">loop </span>{
+        <span class="kw">match </span>conn.wait_for_event()<span class="question-mark">? </span>{
+            xcb::Event::X(x::Event::KeyPress(ev)) =&gt; {
+                <span class="kw">if </span>ev.detail() == <span class="number">0x3a </span>{
+                    <span class="comment">// The M key was pressed
+                    // (M only on qwerty keyboards. Keymap support is done
+                    // with the `xkb` extension and the `xkbcommon-rs` crate)
+
+                    // We toggle maximized state, for this we send a message
+                    // by building a `x::ClientMessageEvent` with the proper
+                    // atoms and send it to the server.
+
+                    </span><span class="kw">let </span>data = x::ClientMessageData::Data32([
+                        <span class="kw">if </span>maximized { <span class="number">0 </span>} <span class="kw">else </span>{ <span class="number">1 </span>},
+                        wm_state_maxv.resource_id(),
+                        wm_state_maxh.resource_id(),
+                        <span class="number">0</span>,
+                        <span class="number">0</span>,
+                    ]);
+                    <span class="kw">let </span>event = x::ClientMessageEvent::new(window, wm_state, data);
+                    <span class="kw">let </span>cookie = conn.send_request_checked(<span class="kw-2">&amp;</span>x::SendEvent {
+                        propagate: <span class="bool-val">false</span>,
+                        destination: x::SendEventDest::Window(screen.root()),
+                        event_mask: x::EventMask::STRUCTURE_NOTIFY,
+                        event: <span class="kw-2">&amp;</span>event,
+                    });
+                    conn.check_request(cookie)<span class="question-mark">?</span>;
+
+                    <span class="comment">// Same as before, if we don&#39;t check for error, we have to flush
+                    // the connection.
+                    // conn.flush()?;
+
+                    </span>maximized = !maximized;
+                } <span class="kw">else if </span>ev.detail() == <span class="number">0x18 </span>{
+                    <span class="comment">// Q (on qwerty)
+
+                    // We exit the event loop (and the program)
+                    </span><span class="kw">break </span><span class="prelude-val">Ok</span>(());
+                }
+            }
+            xcb::Event::X(x::Event::ClientMessage(ev)) =&gt; {
+                <span class="comment">// We have received a message from the server
+                </span><span class="kw">if let </span>x::ClientMessageData::Data32([atom, ..]) = ev.data() {
+                    <span class="kw">if </span>atom == wm_del_window.resource_id() {
+                        <span class="comment">// The received atom is &quot;WM_DELETE_WINDOW&quot;.
+                        // We can check here if the user needs to save before
+                        // exit, or in our case, exit right away.
+                        </span><span class="kw">break </span><span class="prelude-val">Ok</span>(());
+                    }
+                }
+            }
+            <span class="kw">_ </span>=&gt; {}
+        }
+    }
+}</code></pre></div>
+<h2 id="cargo-features"><a href="#cargo-features">Cargo features</a></h2>
+<p>The following Cargo features are available</p>
+<h3 id="xlib_xcb"><a href="#xlib_xcb"><code>xlib_xcb</code></a></h3>
+<p>This feature activates the use of <code>xlib::Display</code> to connect to XCB, therefore making
+available both Xlib and XCB functions to the same connection.
+While XCB is sufficient to handle all communication with the X server, some things can
+still only be done by Xlib. E.g. hardware initialization for OpenGL is done by Xlib only.</p>
+<h3 id="debug_atom_names"><a href="#debug_atom_names"><code>debug_atom_names</code></a></h3>
+<p>When this feature is activated, the <code>fmt::Debug</code> implementation for <code>x::Atom</code> will print
+out the name of the atom in addition to its value.</p>
+<p>E.g. the feature would turn <code>Atom { res_id: 303 }</code> into <code>Atom(&quot;Abs Pressure&quot; ; 303)</code>.</p>
+<p>This can be useful in situations where you are not sure which atom you have to intern
+in order to look up some data in a reply.</p>
+<p>It should be noted that the feature sets global variable to have access to
+the connection in the <code>fmt::Debug</code> implementation, and that the <code>Debug</code> print
+have side effects (<code>x::GetAtomName</code> requests) which can sometimes not be desirable.
+The feature should therefore only be activated when needed.</p>
+<h3 id="extension-features"><a href="#extension-features">Extension features</a></h3>
+<p>The following X extensions are activated by a cargo feature:</p>
+<div><table><thead><tr><th>Extension name</th><th>Cargo feature</th></tr></thead><tbody>
+<tr><td><code>Composite</code></td><td><code>composite</code></td></tr>
+<tr><td><code>DAMAGE</code></td><td><code>damage</code></td></tr>
+<tr><td><code>DPMS</code></td><td><code>dpms</code></td></tr>
+<tr><td><code>DRI2</code></td><td><code>dri2</code></td></tr>
+<tr><td><code>DRI3</code></td><td><code>dri3</code></td></tr>
+<tr><td><code>Generic Event Extension</code></td><td><code>ge</code></td></tr>
+<tr><td><code>GLX</code></td><td><code>glx</code></td></tr>
+<tr><td><code>Present</code></td><td><code>present</code></td></tr>
+<tr><td><code>RANDR</code></td><td><code>randr</code></td></tr>
+<tr><td><code>RECORD</code></td><td><code>record</code></td></tr>
+<tr><td><code>RENDER</code></td><td><code>render</code></td></tr>
+<tr><td><code>X-Resource</code></td><td><code>res</code></td></tr>
+<tr><td><code>MIT-SCREEN-SAVER</code></td><td><code>screensaver</code></td></tr>
+<tr><td><code>SHAPE</code></td><td><code>shape</code></td></tr>
+<tr><td><code>MIT-SHM</code></td><td><code>shm</code></td></tr>
+<tr><td><code>SYNC</code></td><td><code>sync</code></td></tr>
+<tr><td><code>XEVIE</code></td><td><code>xevie</code></td></tr>
+<tr><td><code>XFree86-DRI</code></td><td><code>xf86dri</code></td></tr>
+<tr><td><code>XFree86-VidModeExtension</code></td><td><code>xf86vidmode</code></td></tr>
+<tr><td><code>XFIXES</code></td><td><code>xfixes</code></td></tr>
+<tr><td><code>XINERAMA</code></td><td><code>xinerama</code></td></tr>
+<tr><td><code>XInputExtension</code></td><td><code>xinput</code></td></tr>
+<tr><td><code>XKEYBOARD</code></td><td><code>xkb</code></td></tr>
+<tr><td><code>XpExtension</code></td><td><code>xprint</code></td></tr>
+<tr><td><code>SELinux</code></td><td><code>xselinux</code></td></tr>
+<tr><td><code>TEST</code></td><td><code>xtest</code></td></tr>
+<tr><td><code>XVideo</code></td><td><code>xv</code></td></tr>
+<tr><td><code>XVideo-MotionCompensation</code></td><td><code>xvmc</code></td></tr>
+</tbody></table>
+</div></div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="bigreq/index.html" title="mod xcb::bigreq">bigreq</a></div><div class="desc docblock-short">The <code>BIG-REQUESTS</code> extension.</div></li><li><div class="item-name"><a class="mod" href="composite/index.html" title="mod xcb::composite">composite</a></div><div class="desc docblock-short">The <code>Composite</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="damage/index.html" title="mod xcb::damage">damage</a></div><div class="desc docblock-short">The <code>DAMAGE</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="dpms/index.html" title="mod xcb::dpms">dpms</a></div><div class="desc docblock-short">The <code>DPMS</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="dri2/index.html" title="mod xcb::dri2">dri2</a></div><div class="desc docblock-short">The <code>DRI2</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="dri3/index.html" title="mod xcb::dri3">dri3</a></div><div class="desc docblock-short">The <code>DRI3</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="ffi/index.html" title="mod xcb::ffi">ffi</a></div><div class="desc docblock-short">Module for Foreign Function Interface bindings.</div></li><li><div class="item-name"><a class="mod" href="ge/index.html" title="mod xcb::ge">ge</a></div><div class="desc docblock-short">The <code>Generic Event Extension</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="glx/index.html" title="mod xcb::glx">glx</a></div><div class="desc docblock-short">The <code>GLX</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="present/index.html" title="mod xcb::present">present</a></div><div class="desc docblock-short">The <code>Present</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="randr/index.html" title="mod xcb::randr">randr</a></div><div class="desc docblock-short">The <code>RANDR</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="record/index.html" title="mod xcb::record">record</a></div><div class="desc docblock-short">The <code>RECORD</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="render/index.html" title="mod xcb::render">render</a></div><div class="desc docblock-short">The <code>RENDER</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="res/index.html" title="mod xcb::res">res</a></div><div class="desc docblock-short">The <code>X-Resource</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="screensaver/index.html" title="mod xcb::screensaver">screensaver</a></div><div class="desc docblock-short">The <code>MIT-SCREEN-SAVER</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="shape/index.html" title="mod xcb::shape">shape</a></div><div class="desc docblock-short">The <code>SHAPE</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="shm/index.html" title="mod xcb::shm">shm</a></div><div class="desc docblock-short">The <code>MIT-SHM</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="sync/index.html" title="mod xcb::sync">sync</a></div><div class="desc docblock-short">The <code>SYNC</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="x/index.html" title="mod xcb::x">x</a></div><div class="desc docblock-short">The core X protocol definitions</div></li><li><div class="item-name"><a class="mod" href="xc_misc/index.html" title="mod xcb::xc_misc">xc_misc</a></div><div class="desc docblock-short">The <code>XC-MISC</code> extension.</div></li><li><div class="item-name"><a class="mod" href="xevie/index.html" title="mod xcb::xevie">xevie</a></div><div class="desc docblock-short">The <code>XEVIE</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xf86dri/index.html" title="mod xcb::xf86dri">xf86dri</a></div><div class="desc docblock-short">The <code>XFree86-DRI</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xf86vidmode/index.html" title="mod xcb::xf86vidmode">xf86vidmode</a></div><div class="desc docblock-short">The <code>XFree86-VidModeExtension</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xfixes/index.html" title="mod xcb::xfixes">xfixes</a></div><div class="desc docblock-short">The <code>XFIXES</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xinerama/index.html" title="mod xcb::xinerama">xinerama</a></div><div class="desc docblock-short">The <code>XINERAMA</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xinput/index.html" title="mod xcb::xinput">xinput</a></div><div class="desc docblock-short">The <code>XInputExtension</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xkb/index.html" title="mod xcb::xkb">xkb</a></div><div class="desc docblock-short">The <code>XKEYBOARD</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xprint/index.html" title="mod xcb::xprint">xprint</a></div><div class="desc docblock-short">The <code>XpExtension</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xselinux/index.html" title="mod xcb::xselinux">xselinux</a></div><div class="desc docblock-short">The <code>SELinux</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xtest/index.html" title="mod xcb::xtest">xtest</a></div><div class="desc docblock-short">The <code>XTEST</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xv/index.html" title="mod xcb::xv">xv</a></div><div class="desc docblock-short">The <code>XVideo</code> X extension.</div></li><li><div class="item-name"><a class="mod" href="xvmc/index.html" title="mod xcb::xvmc">xvmc</a></div><div class="desc docblock-short">The <code>XVideo-MotionCompensation</code> X extension.</div></li></ul><h2 id="macros" class="small-section-header"><a href="#macros">Macros</a></h2><ul class="item-table"><li><div class="item-name"><a class="macro" href="macro.atoms_struct.html" title="macro xcb::atoms_struct">atoms_struct</a></div><div class="desc docblock-short">An helper macro that generate a struct of atoms.</div></li></ul><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.AuthInfo.html" title="struct xcb::AuthInfo">AuthInfo</a></div><div class="desc docblock-short">Container for authentication information to connect to the X server</div></li><li><div class="item-name"><a class="struct" href="struct.Connection.html" title="struct xcb::Connection">Connection</a></div><div class="desc docblock-short"><code>Connection</code> is the central object of XCB.</div></li><li><div class="item-name"><a class="struct" href="struct.DisplayInfo.html" title="struct xcb::DisplayInfo">DisplayInfo</a></div><div class="desc docblock-short">Display info returned by <a href="fn.parse_display.html" title="fn xcb::parse_display"><code>parse_display</code></a></div></li><li><div class="item-name"><a class="struct" href="struct.ExtensionData.html" title="struct xcb::ExtensionData">ExtensionData</a></div><div class="desc docblock-short">Extension data as returned by each extensions <code>get_extension_data</code>.</div></li><li><div class="item-name"><a class="struct" href="struct.Lat1Str.html" title="struct xcb::Lat1Str">Lat1Str</a></div><div class="desc docblock-short">A slice to a Latin-1 (aka. ISO 8859-1) string.</div></li><li><div class="item-name"><a class="struct" href="struct.Lat1StrF.html" title="struct xcb::Lat1StrF">Lat1StrF</a></div><div class="desc docblock-short">Latin-1 (aka. ISO 8859-1) of fixed size</div></li><li><div class="item-name"><a class="struct" href="struct.Lat1String.html" title="struct xcb::Lat1String">Lat1String</a></div><div class="desc docblock-short">A struct owning a Latin-1 (aka. ISO 8859-1) string.</div></li><li><div class="item-name"><a class="struct" href="struct.SpecialEventId.html" title="struct xcb::SpecialEventId">SpecialEventId</a></div><div class="desc docblock-short">A struct that serve as an identifier for internal special queue in XCB</div></li><li><div class="item-name"><a class="struct" href="struct.UnknownEvent.html" title="struct xcb::UnknownEvent">UnknownEvent</a></div><div class="desc docblock-short">an event was not recognized as part of the core protocol or any enabled extension</div></li><li><div class="item-name"><a class="struct" href="struct.VoidCookie.html" title="struct xcb::VoidCookie">VoidCookie</a></div><div class="desc docblock-short">The default cookie type returned by void-requests.</div></li><li><div class="item-name"><a class="struct" href="struct.VoidCookieChecked.html" title="struct xcb::VoidCookieChecked">VoidCookieChecked</a></div><div class="desc docblock-short">The checked cookie type returned by void-requests.</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.ConnError.html" title="enum xcb::ConnError">ConnError</a></div><div class="desc docblock-short">Error type that is returned by <code>Connection::has_error</code>.</div></li><li><div class="item-name"><a class="enum" href="enum.Error.html" title="enum xcb::Error">Error</a></div><div class="desc docblock-short">The general error type for Rust-XCB.</div></li><li><div class="item-name"><a class="enum" href="enum.Event.html" title="enum xcb::Event">Event</a></div><div class="desc docblock-short">Unified Event type from the X server.</div></li><li><div class="item-name"><a class="enum" href="enum.EventQueueOwner.html" title="enum xcb::EventQueueOwner">EventQueueOwner</a></div><div class="desc docblock-short">Determines whether Xlib or XCB owns the event queue of <a href="struct.Connection.html" title="struct xcb::Connection"><code>Connection</code></a>.</div></li><li><div class="item-name"><a class="enum" href="enum.Extension.html" title="enum xcb::Extension">Extension</a></div><div class="desc docblock-short">Refers to a X protocol extension.</div></li><li><div class="item-name"><a class="enum" href="enum.Lat1Error.html" title="enum xcb::Lat1Error">Lat1Error</a></div><div class="desc docblock-short">Error that can produce Latin-1 string operations</div></li><li><div class="item-name"><a class="enum" href="enum.ProtocolError.html" title="enum xcb::ProtocolError">ProtocolError</a></div><div class="desc docblock-short">A protocol error issued from the X server</div></li></ul><h2 id="traits" class="small-section-header"><a href="#traits">Traits</a></h2><ul class="item-table"><li><div class="item-name"><a class="trait" href="trait.BaseError.html" title="trait xcb::BaseError">BaseError</a></div><div class="desc docblock-short">A trait to designate base protocol errors.</div></li><li><div class="item-name"><a class="trait" href="trait.BaseEvent.html" title="trait xcb::BaseEvent">BaseEvent</a></div><div class="desc docblock-short">Trait for base events (aka. non GE_GENERIC events)</div></li><li><div class="item-name"><a class="trait" href="trait.Cookie.html" title="trait xcb::Cookie">Cookie</a></div><div class="desc docblock-short">General trait for cookies returned by requests.</div></li><li><div class="item-name"><a class="trait" href="trait.CookieChecked.html" title="trait xcb::CookieChecked">CookieChecked</a></div><div class="desc docblock-short">A marker trait for a cookie that allows synchronized error checking.</div></li><li><div class="item-name"><a class="trait" href="trait.CookieWithReplyChecked.html" title="trait xcb::CookieWithReplyChecked">CookieWithReplyChecked</a></div><div class="desc docblock-short">A trait for checked cookies of requests that send a reply.</div></li><li><div class="item-name"><a class="trait" href="trait.CookieWithReplyUnchecked.html" title="trait xcb::CookieWithReplyUnchecked">CookieWithReplyUnchecked</a></div><div class="desc docblock-short">A trait for unchecked cookies of requests that send a reply.</div></li><li><div class="item-name"><a class="trait" href="trait.GeEvent.html" title="trait xcb::GeEvent">GeEvent</a></div><div class="desc docblock-short">A trait for GE_GENERIC events</div></li><li><div class="item-name"><a class="trait" href="trait.Raw.html" title="trait xcb::Raw">Raw</a></div><div class="desc docblock-short">Trait for types that own a C allocated pointer and are represented by the data pointed to.</div></li><li><div class="item-name"><a class="trait" href="trait.RawRequest.html" title="trait xcb::RawRequest">RawRequest</a></div><div class="desc docblock-short">Trait implemented by all requests to send the serialized data over the wire.</div></li><li><div class="item-name"><a class="trait" href="trait.Reply.html" title="trait xcb::Reply">Reply</a></div><div class="desc docblock-short">Trait for request replies</div></li><li><div class="item-name"><a class="trait" href="trait.Request.html" title="trait xcb::Request">Request</a></div><div class="desc docblock-short">Trait implemented by requests types.</div></li><li><div class="item-name"><a class="trait" href="trait.RequestWithReply.html" title="trait xcb::RequestWithReply">RequestWithReply</a></div><div class="desc docblock-short">Trait for requests that return a reply.</div></li><li><div class="item-name"><a class="trait" href="trait.RequestWithoutReply.html" title="trait xcb::RequestWithoutReply">RequestWithoutReply</a></div><div class="desc docblock-short">Marker trait for requests that do not return a reply.</div></li><li><div class="item-name"><a class="trait" href="trait.Xid.html" title="trait xcb::Xid">Xid</a></div><div class="desc docblock-short">A X resource trait</div></li><li><div class="item-name"><a class="trait" href="trait.XidNew.html" title="trait xcb::XidNew">XidNew</a></div><div class="desc docblock-short">Trait for X resources that can be created directly from <code>Connection::generate_id</code></div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.parse_display.html" title="fn xcb::parse_display">parse_display</a></div><div class="desc docblock-short">Parses a display string in the form documented by <a href="https://linux.die.net/man/7/x">X (7x)</a>.</div></li></ul><h2 id="types" class="small-section-header"><a href="#types">Type Definitions</a></h2><ul class="item-table"><li><div class="item-name"><a class="type" href="type.ConnResult.html" title="type xcb::ConnResult">ConnResult</a></div><div class="desc docblock-short">The result type associated with <a href="enum.ConnError.html" title="enum xcb::ConnError">ConnError</a>.</div></li><li><div class="item-name"><a class="type" href="type.ProtocolResult.html" title="type xcb::ProtocolResult">ProtocolResult</a></div><div class="desc docblock-short">The result type associated with <a href="enum.ProtocolError.html" title="enum xcb::ProtocolError">ProtocolError</a>.</div></li><li><div class="item-name"><a class="type" href="type.Result.html" title="type xcb::Result">Result</a></div><div class="desc docblock-short">The general result type for Rust-XCB.</div></li></ul></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0 (84c898d65 2023-04-16)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
