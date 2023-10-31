@@ -1291,6 +1291,7 @@ impl Connection {
 
             let mut stamp: Timestamp = 0;
 
+            //let ext = &xinput::FFI_EXT;
             let raw = xcb_register_for_special_xge(self.c, ext, XGE::NUMBER, &mut stamp as *mut _);
 
             SpecialEventId { raw, stamp }

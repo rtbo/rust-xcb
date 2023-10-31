@@ -93,6 +93,10 @@ required-features = ["xkb", "xinput", "xlib_xcb"]
 name = "get_all_windows"
 
 [[example]]
+name = "fix_243"
+required-features = ["xinput"]
+
+[[example]]
 name = "opengl_window"
 required-features = ["glx", "xlib_xcb", "dri2"]
 
