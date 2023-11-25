@@ -869,24 +869,6 @@
 <a href="#869" id="869">869</a>
 <a href="#870" id="870">870</a>
 <a href="#871" id="871">871</a>
-<a href="#872" id="872">872</a>
-<a href="#873" id="873">873</a>
-<a href="#874" id="874">874</a>
-<a href="#875" id="875">875</a>
-<a href="#876" id="876">876</a>
-<a href="#877" id="877">877</a>
-<a href="#878" id="878">878</a>
-<a href="#879" id="879">879</a>
-<a href="#880" id="880">880</a>
-<a href="#881" id="881">881</a>
-<a href="#882" id="882">882</a>
-<a href="#883" id="883">883</a>
-<a href="#884" id="884">884</a>
-<a href="#885" id="885">885</a>
-<a href="#886" id="886">886</a>
-<a href="#887" id="887">887</a>
-<a href="#888" id="888">888</a>
-<a href="#889" id="889">889</a>
 </pre></div><pre class="rust"><code><span class="comment">// This source file is generated automatically from composite.xml
 
 </span><span class="kw">use </span><span class="kw">crate</span>::base::{<span class="self">self</span>, BaseError, BaseEvent, GeEvent, Raw, Reply, WiredIn, WiredOut, Xid};
@@ -994,50 +976,40 @@
     <span class="kw">pub fn </span>response_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u8&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>sequence(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u16&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>length(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u32&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>major_version(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u32&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>minor_version(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u32&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
+            base::value_from_ptr(ptr)
         }
     }
 }
@@ -1543,40 +1515,32 @@
     <span class="kw">pub fn </span>response_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u8&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>sequence(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u16&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>length(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u32&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>overlay_win(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; xproto::Window {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>xproto::Window;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;xproto::Window&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>xproto::Window;
+            base::value_from_ptr(ptr)
         }
     }
 }

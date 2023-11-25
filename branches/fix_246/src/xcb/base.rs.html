@@ -1768,6 +1768,17 @@
 <a href="#1768" id="1768">1768</a>
 <a href="#1769" id="1769">1769</a>
 <a href="#1770" id="1770">1770</a>
+<a href="#1771" id="1771">1771</a>
+<a href="#1772" id="1772">1772</a>
+<a href="#1773" id="1773">1773</a>
+<a href="#1774" id="1774">1774</a>
+<a href="#1775" id="1775">1775</a>
+<a href="#1776" id="1776">1776</a>
+<a href="#1777" id="1777">1777</a>
+<a href="#1778" id="1778">1778</a>
+<a href="#1779" id="1779">1779</a>
+<a href="#1780" id="1780">1780</a>
+<a href="#1781" id="1781">1781</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error::{<span class="self">self</span>, ProtocolError};
 <span class="kw">use </span><span class="kw">crate</span>::event::{<span class="self">self</span>, Event};
 <span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
@@ -3518,6 +3529,17 @@
     <span class="kw">let </span>base = base <span class="kw">as </span>isize;
     <span class="kw">let </span>align = align <span class="kw">as </span>isize;
     (-base &amp; (align - <span class="number">1</span>)) <span class="kw">as </span>usize
+}
+
+<span class="doccomment">/// Get a value from a pointer, using ptr::copy_nonoverlapping to avoid alignment issues
+/// 
+/// # Safety
+/// The pointer must point to a valid `T` value
+</span><span class="attr">#[inline]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe fn </span>value_from_ptr&lt;T&gt;(ptr: <span class="kw-2">*const </span>T) -&gt; T {
+    <span class="kw">let </span><span class="kw-2">mut </span>val = mem::MaybeUninit::&lt;T&gt;::uninit();
+    ptr::copy_nonoverlapping(ptr, val.as_mut_ptr(), <span class="number">1</span>);
+    val.assume_init()
 }
 
 <span class="attr">#[test]

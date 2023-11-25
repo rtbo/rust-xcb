@@ -257,14 +257,6 @@
 <a href="#257" id="257">257</a>
 <a href="#258" id="258">258</a>
 <a href="#259" id="259">259</a>
-<a href="#260" id="260">260</a>
-<a href="#261" id="261">261</a>
-<a href="#262" id="262">262</a>
-<a href="#263" id="263">263</a>
-<a href="#264" id="264">264</a>
-<a href="#265" id="265">265</a>
-<a href="#266" id="266">266</a>
-<a href="#267" id="267">267</a>
 </pre></div><pre class="rust"><code><span class="comment">// This source file is generated automatically from bigreq.xml
 
 </span><span class="kw">use </span><span class="kw">crate</span>::base::{<span class="self">self</span>, BaseError, BaseEvent, GeEvent, Raw, Reply, WiredIn, WiredOut, Xid};
@@ -357,40 +349,32 @@
     <span class="kw">pub fn </span>response_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u8&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>sequence(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u16&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>length(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u32&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
+            base::value_from_ptr(ptr)
         }
     }
 
     <span class="kw">pub fn </span>maximum_request_length(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
-            <span class="kw">let </span>src = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            <span class="kw">let </span><span class="kw-2">mut </span>val = std::mem::MaybeUninit::&lt;u32&gt;::uninit();
-            std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), <span class="number">1</span>);
-            val.assume_init()
+            <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
+            base::value_from_ptr(ptr)
         }
     }
 }
