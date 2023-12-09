@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["MAJOR_VERSION","MINOR_VERSION","VERSION_STRING","XNAME"],"enum":["Error","Event","ReportLevel"],"fn":["get_extension_data","prefetch_extension_data"],"struct":["Add","BadDamageError","Create","Damage","Destroy","NotifyEvent","QueryVersion","QueryVersionCookie","QueryVersionCookieUnchecked","QueryVersionReply","Subtract"]};
