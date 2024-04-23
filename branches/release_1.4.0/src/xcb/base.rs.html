@@ -2091,6 +2091,9 @@
 <a href="#2089" id="2089">2089</a>
 <a href="#2090" id="2090">2090</a>
 <a href="#2091" id="2091">2091</a>
+<a href="#2092" id="2092">2092</a>
+<a href="#2093" id="2093">2093</a>
+<a href="#2094" id="2094">2094</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error::{<span class="self">self</span>, ProtocolError};
 <span class="kw">use </span><span class="kw">crate</span>::event::{<span class="self">self</span>, Event};
 <span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
@@ -3419,7 +3422,8 @@
     <span class="doccomment">/// Stop listening to a special event
     </span><span class="attr">#[deprecated(note = <span class="string">"use `unregister_for_special_event` instead"</span>)]
     #[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
-    </span><span class="kw">pub fn </span>unregister_for_special_xge(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEvent) {
+    #[allow(deprecated)]
+    </span><span class="kw">pub fn </span>unregister_for_special_xge(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEventId) {
         <span class="kw">unsafe </span>{
             xcb_unregister_for_special_event(<span class="self">self</span>.c, se.raw);
         }
@@ -3428,7 +3432,8 @@
     <span class="doccomment">/// Returns the next event from a special queue, blocking until one arrives
     </span><span class="attr">#[deprecated(note = <span class="string">"Broken API: use `wait_for_special_event2` instead"</span>)]
     #[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
-    </span><span class="kw">pub fn </span>wait_for_special_event(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEvent) -&gt; <span class="prelude-ty">Result</span>&lt;Event&gt; {
+    #[allow(deprecated)]
+    </span><span class="kw">pub fn </span>wait_for_special_event(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEventId) -&gt; <span class="prelude-ty">Result</span>&lt;Event&gt; {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>ev = xcb_wait_for_special_event(<span class="self">self</span>.c, se.raw);
             <span class="self">self</span>.handle_wait_for_event(ev)
@@ -3438,7 +3443,8 @@
     <span class="doccomment">/// Returns the next event from a special queue
     </span><span class="attr">#[deprecated(note = <span class="string">"Broken API: use `poll_for_special_event2` instead"</span>)]
     #[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
-    </span><span class="kw">pub fn </span>poll_for_special_event(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEvent) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Event&gt;&gt; {
+    #[allow(deprecated)]
+    </span><span class="kw">pub fn </span>poll_for_special_event(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEventId) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Event&gt;&gt; {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>ev = xcb_poll_for_special_event(<span class="self">self</span>.c, se.raw);
             <span class="self">self</span>.handle_poll_for_event(ev)
