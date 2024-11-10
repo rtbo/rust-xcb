@@ -427,6 +427,7 @@
 <a href="#427" id="427">427</a>
 <a href="#428" id="428">428</a>
 <a href="#429" id="429">429</a>
+<a href="#430" id="430">430</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::base::{Connection, Reply};
 <span class="kw">use </span><span class="kw">crate</span>::ffi::{
     xcb_connection_t, xcb_extension_t, xcb_get_extension_data, xcb_prefetch_extension_data,
@@ -435,6 +436,7 @@
 
 <span class="kw">use </span>std::fmt;
 <span class="kw">use </span>std::mem;
+<span class="kw">use </span>std::ptr;
 
 <span class="doccomment">/// Refers to a X protocol extension.
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq, Eq)]
@@ -712,18 +714,18 @@
     <span class="kw">unsafe </span>{
         <span class="kw">for </span>ext <span class="kw">in </span>mandatory {
             <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
-            xcb_prefetch_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+            xcb_prefetch_extension_data(conn, ext_id);
         }
         <span class="kw">for </span>ext <span class="kw">in </span>optional {
             <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
-            xcb_prefetch_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+            xcb_prefetch_extension_data(conn, ext_id);
         }
 
         <span class="kw">let </span><span class="kw-2">mut </span>ext_data = Vec::new();
 
         <span class="kw">for </span>ext <span class="kw">in </span>mandatory {
             <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
-            <span class="kw">let </span>raw = xcb_get_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+            <span class="kw">let </span>raw = xcb_get_extension_data(conn, ext_id);
             <span class="kw">let </span>reply = x::QueryExtensionReply::from_raw(raw);
 
             <span class="macro">assert!</span>(
@@ -742,7 +744,7 @@
 
         <span class="kw">for </span>ext <span class="kw">in </span>optional {
             <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
-            <span class="kw">let </span>raw = xcb_get_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+            <span class="kw">let </span>raw = xcb_get_extension_data(conn, ext_id);
             <span class="kw">let </span>reply = x::QueryExtensionReply::from_raw(raw);
 
             <span class="kw">if </span>!reply.present() {
@@ -766,94 +768,94 @@
     }
 }
 
-<span class="kw">unsafe fn </span>get_extension_id(ext: Extension) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span><span class="kw-2">mut </span>xcb_extension_t {
+<span class="kw">unsafe fn </span>get_extension_id(ext: Extension) -&gt; <span class="kw-2">*mut </span>xcb_extension_t {
     <span class="kw">match </span>ext {
-        Extension::BigRequests =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::bigreq::FFI_EXT,
-        Extension::XcMisc =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xc_misc::FFI_EXT,
+        Extension::BigRequests =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::bigreq::FFI_EXT),
+        Extension::XcMisc =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xc_misc::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
-        </span>Extension::Composite =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::composite::FFI_EXT,
+        </span>Extension::Composite =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::composite::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"damage"</span>)]
-        </span>Extension::Damage =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::damage::FFI_EXT,
+        </span>Extension::Damage =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::damage::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"dpms"</span>)]
-        </span>Extension::Dpms =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dpms::FFI_EXT,
+        </span>Extension::Dpms =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::dpms::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"dri2"</span>)]
-        </span>Extension::Dri2 =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dri2::FFI_EXT,
+        </span>Extension::Dri2 =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::dri2::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"dri3"</span>)]
-        </span>Extension::Dri3 =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dri3::FFI_EXT,
+        </span>Extension::Dri3 =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::dri3::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"ge"</span>)]
-        </span>Extension::GenericEvent =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::ge::FFI_EXT,
+        </span>Extension::GenericEvent =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::ge::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"glx"</span>)]
-        </span>Extension::Glx =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::glx::FFI_EXT,
+        </span>Extension::Glx =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::glx::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
-        </span>Extension::Present =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::present::FFI_EXT,
+        </span>Extension::Present =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::present::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"randr"</span>)]
-        </span>Extension::RandR =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::randr::FFI_EXT,
+        </span>Extension::RandR =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::randr::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"record"</span>)]
-        </span>Extension::Record =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::record::FFI_EXT,
+        </span>Extension::Record =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::record::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"render"</span>)]
-        </span>Extension::Render =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::render::FFI_EXT,
+        </span>Extension::Render =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::render::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"res"</span>)]
-        </span>Extension::Res =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::res::FFI_EXT,
+        </span>Extension::Res =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::res::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"screensaver"</span>)]
-        </span>Extension::ScreenSaver =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::screensaver::FFI_EXT,
+        </span>Extension::ScreenSaver =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::screensaver::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"shape"</span>)]
-        </span>Extension::Shape =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::shape::FFI_EXT,
+        </span>Extension::Shape =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::shape::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"shm"</span>)]
-        </span>Extension::Shm =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::shm::FFI_EXT,
+        </span>Extension::Shm =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::shm::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"sync"</span>)]
-        </span>Extension::Sync =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::sync::FFI_EXT,
+        </span>Extension::Sync =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::sync::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xevie"</span>)]
-        </span>Extension::Xevie =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xevie::FFI_EXT,
+        </span>Extension::Xevie =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xevie::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xf86dri"</span>)]
-        </span>Extension::Xf86Dri =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xf86dri::FFI_EXT,
+        </span>Extension::Xf86Dri =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xf86dri::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xf86vidmode"</span>)]
-        </span>Extension::Xf86VidMode =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xf86vidmode::FFI_EXT,
+        </span>Extension::Xf86VidMode =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xf86vidmode::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xfixes"</span>)]
-        </span>Extension::XFixes =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xfixes::FFI_EXT,
+        </span>Extension::XFixes =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xfixes::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xinerama"</span>)]
-        </span>Extension::Xinerama =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xinerama::FFI_EXT,
+        </span>Extension::Xinerama =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xinerama::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
-        </span>Extension::Input =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xinput::FFI_EXT,
+        </span>Extension::Input =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xinput::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xkb"</span>)]
-        </span>Extension::Xkb =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xkb::FFI_EXT,
+        </span>Extension::Xkb =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xkb::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xprint"</span>)]
-        </span>Extension::XPrint =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xprint::FFI_EXT,
+        </span>Extension::XPrint =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xprint::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xselinux"</span>)]
-        </span>Extension::SeLinux =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xselinux::FFI_EXT,
+        </span>Extension::SeLinux =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xselinux::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xtest"</span>)]
-        </span>Extension::Test =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xtest::FFI_EXT,
+        </span>Extension::Test =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xtest::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xv"</span>)]
-        </span>Extension::Xv =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xv::FFI_EXT,
+        </span>Extension::Xv =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xv::FFI_EXT),
 
         <span class="attr">#[cfg(feature = <span class="string">"xvmc"</span>)]
-        </span>Extension::XvMc =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xvmc::FFI_EXT,
+        </span>Extension::XvMc =&gt; <span class="macro">ptr::addr_of_mut!</span>(<span class="kw">crate</span>::xvmc::FFI_EXT),
     }
 }
 </code></pre></div></section></main></body></html>

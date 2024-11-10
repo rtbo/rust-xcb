@@ -4923,7 +4923,7 @@
 <span class="doccomment">/// Prefetch server runtime info data of the `Render` extension.
 </span><span class="kw">pub fn </span>prefetch_extension_data(conn: <span class="kw-2">&amp;</span>base::Connection) {
     <span class="kw">unsafe </span>{
-        xcb_prefetch_extension_data(conn.get_raw_conn(), <span class="kw-2">&amp;mut </span>FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+        xcb_prefetch_extension_data(conn.get_raw_conn(), <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT));
     }
 }
 
@@ -4934,7 +4934,7 @@
 /// [Connection](crate::Connection) constructor.
 </span><span class="kw">pub fn </span>get_extension_data(conn: <span class="kw-2">&amp;</span>base::Connection) -&gt; std::option::Option&lt;ext::ExtensionData&gt; {
     <span class="kw">unsafe </span>{
-        <span class="kw">let </span>reply = xcb_get_extension_data(conn.get_raw_conn(), <span class="kw-2">&amp;mut </span>FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+        <span class="kw">let </span>reply = xcb_get_extension_data(conn.get_raw_conn(), <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT));
         <span class="macro">assert!</span>(!reply.is_null(), <span class="string">"Could not fetch Render extension data"</span>);
         <span class="kw">let </span>reply = xproto::QueryExtensionReply::from_raw(reply);
         <span class="kw">if </span>!reply.present() {
@@ -7174,7 +7174,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">0</span>,
                 isvoid: <span class="number">0</span>,
             };
@@ -7512,7 +7512,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">1</span>,
                 isvoid: <span class="number">0</span>,
             };
@@ -7737,7 +7737,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">2</span>,
                 isvoid: <span class="number">0</span>,
             };
@@ -7802,7 +7802,7 @@
             </span>);
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">4</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -7871,7 +7871,7 @@
             </span>);
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">5</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -7936,7 +7936,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">6</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -7996,7 +7996,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">7</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8061,7 +8061,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">8</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8132,7 +8132,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">10</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8201,7 +8201,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">11</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8270,7 +8270,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">12</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8339,7 +8339,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">13</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8403,7 +8403,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">17</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8459,7 +8459,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">18</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8514,7 +8514,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">19</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8571,7 +8571,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">8</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">20</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8639,7 +8639,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">22</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8704,7 +8704,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">23</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8775,7 +8775,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">24</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8846,7 +8846,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">25</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8913,7 +8913,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">26</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -8976,7 +8976,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">27</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9034,7 +9034,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">28</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9286,7 +9286,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">29</span>,
                 isvoid: <span class="number">0</span>,
             };
@@ -9346,7 +9346,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">6</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">30</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9410,7 +9410,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">31</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9471,7 +9471,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">4</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">32</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9532,7 +9532,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">2</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">33</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9591,7 +9591,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">6</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">34</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9662,7 +9662,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">6</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">35</span>,
                 isvoid: <span class="number">1</span>,
             };
@@ -9733,7 +9733,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>protocol_request = xcb_protocol_request_t {
                 count: <span class="number">6</span>,
-                ext: (<span class="kw-2">&amp;mut </span>FFI_EXT) <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                ext: <span class="macro">std::ptr::addr_of_mut!</span>(FFI_EXT),
                 opcode: <span class="number">36</span>,
                 isvoid: <span class="number">1</span>,
             };

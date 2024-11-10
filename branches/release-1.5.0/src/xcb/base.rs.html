@@ -3433,9 +3433,9 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>ext: <span class="kw-2">*mut </span>xcb_extension_t = <span class="kw">match </span>XGE::EXTENSION {
                 <span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
-                </span>Extension::Input =&gt; <span class="kw-2">&amp;mut </span>xinput::FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                </span>Extension::Input =&gt; <span class="macro">ptr::addr_of_mut!</span>(xinput::FFI_EXT),
                 <span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
-                </span>Extension::Present =&gt; <span class="kw-2">&amp;mut </span>present::FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                </span>Extension::Present =&gt; <span class="macro">ptr::addr_of_mut!</span>(present::FFI_EXT),
                 <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">"only Input and Present have XGE events"</span>),
             };
 
@@ -3494,10 +3494,10 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>ext: <span class="kw-2">*mut </span>xcb_extension_t = <span class="kw">match </span>extension {
                 <span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
-                </span>Extension::Input =&gt; <span class="kw-2">&amp;mut </span>xinput::FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
+                </span>Extension::Input =&gt; <span class="macro">ptr::addr_of_mut!</span>(xinput::FFI_EXT),
                 <span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
-                </span>Extension::Present =&gt; <span class="kw-2">&amp;mut </span>present::FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-                <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"only Input and Present have XGE events"</span>),
+                </span>Extension::Present =&gt; <span class="macro">ptr::addr_of_mut!</span>(present::FFI_EXT),
+                <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">"only Input and Present have XGE events"</span>),
             };
 
             <span class="kw">let </span>raw = xcb_register_for_special_xge(<span class="self">self</span>.c, ext, eid.resource_id(), ptr::null_mut());
